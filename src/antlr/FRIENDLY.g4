@@ -51,6 +51,7 @@ statement         	    : assignment_statement
                     	| do_while_statement
                     	| for_statement
                     	| return_statement
+                    	| expression
                     	| OPEN_BRACE  statement_list CLOSE_BRACE
                         ;
 
