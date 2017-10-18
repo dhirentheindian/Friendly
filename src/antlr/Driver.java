@@ -21,13 +21,14 @@ public class Driver {
 	        FRIENDLYLexer lexer = new FRIENDLYLexer(input);
 	        CommonTokenStream tokens = new CommonTokenStream(lexer);
 	        FRIENDLYParser parser = new FRIENDLYParser(tokens);
-	        ParseTree tree = parser.start();
-			ParseTreeWalker walker = new ParseTreeWalker();
-	        tokens.fill();
-	        for (Token tok: tokens.getTokens()){
-				System.out.println(tok.getText() + "-->" + lexer.VOCABULARY.getSymbolicName(tok.getType()));
+			parser.addErrorListener(new FRIENDLYErrorListener());
 
-			}
+			ParseTree tree = parser.start();
+			ParseTreeWalker walker = new ParseTreeWalker();
+
+
+			tokens.fill();
+
 			System.out.println(tree.toStringTree(parser));
 			walker.walk(new BaseTester(),tree);
 
