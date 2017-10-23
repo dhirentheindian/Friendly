@@ -1,5 +1,6 @@
-// Generated from FRIENDLY.g4 by ANTLR 4.7
 package antlr;
+
+// Generated from FRIENDLY.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -8,135 +9,705 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface FRIENDLYListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#start}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#compilationUnit}.
 	 * @param ctx the parse tree
 	 */
-	void enterStart(FRIENDLYParser.StartContext ctx);
+	void enterCompilationUnit(FRIENDLYParser.CompilationUnitContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#start}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#compilationUnit}.
 	 * @param ctx the parse tree
 	 */
-	void exitStart(FRIENDLYParser.StartContext ctx);
+	void exitCompilationUnit(FRIENDLYParser.CompilationUnitContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#funcdecl_list}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#packageDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterFuncdecl_list(FRIENDLYParser.Funcdecl_listContext ctx);
+	void enterPackageDeclaration(FRIENDLYParser.PackageDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#funcdecl_list}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#packageDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitFuncdecl_list(FRIENDLYParser.Funcdecl_listContext ctx);
+	void exitPackageDeclaration(FRIENDLYParser.PackageDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#function_declaration}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#importDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_declaration(FRIENDLYParser.Function_declarationContext ctx);
+	void enterImportDeclaration(FRIENDLYParser.ImportDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#function_declaration}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#importDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_declaration(FRIENDLYParser.Function_declarationContext ctx);
+	void exitImportDeclaration(FRIENDLYParser.ImportDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#function_return}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_return(FRIENDLYParser.Function_returnContext ctx);
+	void enterTypeDeclaration(FRIENDLYParser.TypeDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#function_return}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_return(FRIENDLYParser.Function_returnContext ctx);
+	void exitTypeDeclaration(FRIENDLYParser.TypeDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#function_noreturn}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#modifier}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_noreturn(FRIENDLYParser.Function_noreturnContext ctx);
+	void enterModifier(FRIENDLYParser.ModifierContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#function_noreturn}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#modifier}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_noreturn(FRIENDLYParser.Function_noreturnContext ctx);
+	void exitModifier(FRIENDLYParser.ModifierContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#parameter_list}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#classOrInterfaceModifier}.
 	 * @param ctx the parse tree
 	 */
-	void enterParameter_list(FRIENDLYParser.Parameter_listContext ctx);
+	void enterClassOrInterfaceModifier(FRIENDLYParser.ClassOrInterfaceModifierContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#parameter_list}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#classOrInterfaceModifier}.
 	 * @param ctx the parse tree
 	 */
-	void exitParameter_list(FRIENDLYParser.Parameter_listContext ctx);
+	void exitClassOrInterfaceModifier(FRIENDLYParser.ClassOrInterfaceModifierContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#parameters}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#variableModifier}.
 	 * @param ctx the parse tree
 	 */
-	void enterParameters(FRIENDLYParser.ParametersContext ctx);
+	void enterVariableModifier(FRIENDLYParser.VariableModifierContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#parameters}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#variableModifier}.
 	 * @param ctx the parse tree
 	 */
-	void exitParameters(FRIENDLYParser.ParametersContext ctx);
+	void exitVariableModifier(FRIENDLYParser.VariableModifierContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#function_content}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#classDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_content(FRIENDLYParser.Function_contentContext ctx);
+	void enterClassDeclaration(FRIENDLYParser.ClassDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#function_content}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#classDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_content(FRIENDLYParser.Function_contentContext ctx);
+	void exitClassDeclaration(FRIENDLYParser.ClassDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#main_function}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeParameters}.
 	 * @param ctx the parse tree
 	 */
-	void enterMain_function(FRIENDLYParser.Main_functionContext ctx);
+	void enterTypeParameters(FRIENDLYParser.TypeParametersContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#main_function}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeParameters}.
 	 * @param ctx the parse tree
 	 */
-	void exitMain_function(FRIENDLYParser.Main_functionContext ctx);
+	void exitTypeParameters(FRIENDLYParser.TypeParametersContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#vardecl_list}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeParameter}.
 	 * @param ctx the parse tree
 	 */
-	void enterVardecl_list(FRIENDLYParser.Vardecl_listContext ctx);
+	void enterTypeParameter(FRIENDLYParser.TypeParameterContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#vardecl_list}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeParameter}.
 	 * @param ctx the parse tree
 	 */
-	void exitVardecl_list(FRIENDLYParser.Vardecl_listContext ctx);
+	void exitTypeParameter(FRIENDLYParser.TypeParameterContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#var_decl}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeBound}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar_decl(FRIENDLYParser.Var_declContext ctx);
+	void enterTypeBound(FRIENDLYParser.TypeBoundContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#var_decl}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeBound}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar_decl(FRIENDLYParser.Var_declContext ctx);
+	void exitTypeBound(FRIENDLYParser.TypeBoundContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#data_type}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#enumDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterData_type(FRIENDLYParser.Data_typeContext ctx);
+	void enterEnumDeclaration(FRIENDLYParser.EnumDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#data_type}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#enumDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitData_type(FRIENDLYParser.Data_typeContext ctx);
+	void exitEnumDeclaration(FRIENDLYParser.EnumDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#identifier_list}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#enumConstants}.
 	 * @param ctx the parse tree
 	 */
-	void enterIdentifier_list(FRIENDLYParser.Identifier_listContext ctx);
+	void enterEnumConstants(FRIENDLYParser.EnumConstantsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#identifier_list}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#enumConstants}.
 	 * @param ctx the parse tree
 	 */
-	void exitIdentifier_list(FRIENDLYParser.Identifier_listContext ctx);
+	void exitEnumConstants(FRIENDLYParser.EnumConstantsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#enumConstant}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumConstant(FRIENDLYParser.EnumConstantContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#enumConstant}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumConstant(FRIENDLYParser.EnumConstantContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#enumBodyDeclarations}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumBodyDeclarations(FRIENDLYParser.EnumBodyDeclarationsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#enumBodyDeclarations}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumBodyDeclarations(FRIENDLYParser.EnumBodyDeclarationsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#interfaceDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterfaceDeclaration(FRIENDLYParser.InterfaceDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#interfaceDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterfaceDeclaration(FRIENDLYParser.InterfaceDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeList}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeList(FRIENDLYParser.TypeListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeList}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeList(FRIENDLYParser.TypeListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#classBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassBody(FRIENDLYParser.ClassBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#classBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassBody(FRIENDLYParser.ClassBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#interfaceBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterfaceBody(FRIENDLYParser.InterfaceBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#interfaceBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterfaceBody(FRIENDLYParser.InterfaceBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#classBodyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassBodyDeclaration(FRIENDLYParser.ClassBodyDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#classBodyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassBodyDeclaration(FRIENDLYParser.ClassBodyDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#memberDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterMemberDeclaration(FRIENDLYParser.MemberDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#memberDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitMemberDeclaration(FRIENDLYParser.MemberDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#methodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodDeclaration(FRIENDLYParser.MethodDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#methodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodDeclaration(FRIENDLYParser.MethodDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#genericMethodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGenericMethodDeclaration(FRIENDLYParser.GenericMethodDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#genericMethodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGenericMethodDeclaration(FRIENDLYParser.GenericMethodDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#constructorDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstructorDeclaration(FRIENDLYParser.ConstructorDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#constructorDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstructorDeclaration(FRIENDLYParser.ConstructorDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#genericConstructorDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGenericConstructorDeclaration(FRIENDLYParser.GenericConstructorDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#genericConstructorDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGenericConstructorDeclaration(FRIENDLYParser.GenericConstructorDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#fieldDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFieldDeclaration(FRIENDLYParser.FieldDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#fieldDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFieldDeclaration(FRIENDLYParser.FieldDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#interfaceBodyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterfaceBodyDeclaration(FRIENDLYParser.InterfaceBodyDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#interfaceBodyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterfaceBodyDeclaration(FRIENDLYParser.InterfaceBodyDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#interfaceMemberDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterfaceMemberDeclaration(FRIENDLYParser.InterfaceMemberDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#interfaceMemberDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterfaceMemberDeclaration(FRIENDLYParser.InterfaceMemberDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#constDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstDeclaration(FRIENDLYParser.ConstDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#constDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstDeclaration(FRIENDLYParser.ConstDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#constantDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstantDeclarator(FRIENDLYParser.ConstantDeclaratorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#constantDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstantDeclarator(FRIENDLYParser.ConstantDeclaratorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#interfaceMethodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterfaceMethodDeclaration(FRIENDLYParser.InterfaceMethodDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#interfaceMethodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterfaceMethodDeclaration(FRIENDLYParser.InterfaceMethodDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#genericInterfaceMethodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGenericInterfaceMethodDeclaration(FRIENDLYParser.GenericInterfaceMethodDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#genericInterfaceMethodDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGenericInterfaceMethodDeclaration(FRIENDLYParser.GenericInterfaceMethodDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#variableDeclarators}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableDeclarators(FRIENDLYParser.VariableDeclaratorsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#variableDeclarators}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableDeclarators(FRIENDLYParser.VariableDeclaratorsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#variableDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableDeclarator(FRIENDLYParser.VariableDeclaratorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#variableDeclarator}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableDeclarator(FRIENDLYParser.VariableDeclaratorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#variableDeclaratorId}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableDeclaratorId(FRIENDLYParser.VariableDeclaratorIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#variableDeclaratorId}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableDeclaratorId(FRIENDLYParser.VariableDeclaratorIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#variableInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableInitializer(FRIENDLYParser.VariableInitializerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#variableInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableInitializer(FRIENDLYParser.VariableInitializerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#arrayInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayInitializer(FRIENDLYParser.ArrayInitializerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#arrayInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayInitializer(FRIENDLYParser.ArrayInitializerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#enumConstantName}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumConstantName(FRIENDLYParser.EnumConstantNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#enumConstantName}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumConstantName(FRIENDLYParser.EnumConstantNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeType}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeType(FRIENDLYParser.TypeTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeType}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeType(FRIENDLYParser.TypeTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassOrInterfaceType(FRIENDLYParser.ClassOrInterfaceTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#classOrInterfaceType}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassOrInterfaceType(FRIENDLYParser.ClassOrInterfaceTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrimitiveType(FRIENDLYParser.PrimitiveTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#primitiveType}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrimitiveType(FRIENDLYParser.PrimitiveTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeArguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeArguments(FRIENDLYParser.TypeArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeArguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeArguments(FRIENDLYParser.TypeArgumentsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeArgument}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeArgument(FRIENDLYParser.TypeArgumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeArgument}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeArgument(FRIENDLYParser.TypeArgumentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#qualifiedNameList}.
+	 * @param ctx the parse tree
+	 */
+	void enterQualifiedNameList(FRIENDLYParser.QualifiedNameListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#qualifiedNameList}.
+	 * @param ctx the parse tree
+	 */
+	void exitQualifiedNameList(FRIENDLYParser.QualifiedNameListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#formalParameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormalParameters(FRIENDLYParser.FormalParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#formalParameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormalParameters(FRIENDLYParser.FormalParametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#formalParameterList}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormalParameterList(FRIENDLYParser.FormalParameterListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#formalParameterList}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormalParameterList(FRIENDLYParser.FormalParameterListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#formalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormalParameter(FRIENDLYParser.FormalParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#formalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormalParameter(FRIENDLYParser.FormalParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#lastFormalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterLastFormalParameter(FRIENDLYParser.LastFormalParameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#lastFormalParameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitLastFormalParameter(FRIENDLYParser.LastFormalParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#methodBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodBody(FRIENDLYParser.MethodBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#methodBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodBody(FRIENDLYParser.MethodBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#constructorBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstructorBody(FRIENDLYParser.ConstructorBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#constructorBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstructorBody(FRIENDLYParser.ConstructorBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#qualifiedName}.
+	 * @param ctx the parse tree
+	 */
+	void enterQualifiedName(FRIENDLYParser.QualifiedNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#qualifiedName}.
+	 * @param ctx the parse tree
+	 */
+	void exitQualifiedName(FRIENDLYParser.QualifiedNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteral(FRIENDLYParser.LiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteral(FRIENDLYParser.LiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotation}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotation(FRIENDLYParser.AnnotationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotation}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotation(FRIENDLYParser.AnnotationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationName}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationName(FRIENDLYParser.AnnotationNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationName}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationName(FRIENDLYParser.AnnotationNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#elementValuePairs}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementValuePairs(FRIENDLYParser.ElementValuePairsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#elementValuePairs}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementValuePairs(FRIENDLYParser.ElementValuePairsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#elementValuePair}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementValuePair(FRIENDLYParser.ElementValuePairContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#elementValuePair}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementValuePair(FRIENDLYParser.ElementValuePairContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#elementValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementValue(FRIENDLYParser.ElementValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#elementValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementValue(FRIENDLYParser.ElementValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#elementValueArrayInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void enterElementValueArrayInitializer(FRIENDLYParser.ElementValueArrayInitializerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#elementValueArrayInitializer}.
+	 * @param ctx the parse tree
+	 */
+	void exitElementValueArrayInitializer(FRIENDLYParser.ElementValueArrayInitializerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationTypeDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationTypeDeclaration(FRIENDLYParser.AnnotationTypeDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationTypeDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationTypeDeclaration(FRIENDLYParser.AnnotationTypeDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationTypeBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationTypeBody(FRIENDLYParser.AnnotationTypeBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationTypeBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationTypeBody(FRIENDLYParser.AnnotationTypeBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationTypeElementDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationTypeElementDeclaration(FRIENDLYParser.AnnotationTypeElementDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationTypeElementDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationTypeElementDeclaration(FRIENDLYParser.AnnotationTypeElementDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationTypeElementRest}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationTypeElementRest(FRIENDLYParser.AnnotationTypeElementRestContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationTypeElementRest}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationTypeElementRest(FRIENDLYParser.AnnotationTypeElementRestContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationMethodOrConstantRest}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationMethodOrConstantRest(FRIENDLYParser.AnnotationMethodOrConstantRestContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationMethodOrConstantRest}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationMethodOrConstantRest(FRIENDLYParser.AnnotationMethodOrConstantRestContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationMethodRest}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationMethodRest(FRIENDLYParser.AnnotationMethodRestContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationMethodRest}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationMethodRest(FRIENDLYParser.AnnotationMethodRestContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#annotationConstantRest}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnnotationConstantRest(FRIENDLYParser.AnnotationConstantRestContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#annotationConstantRest}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnnotationConstantRest(FRIENDLYParser.AnnotationConstantRestContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#defaultValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefaultValue(FRIENDLYParser.DefaultValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#defaultValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefaultValue(FRIENDLYParser.DefaultValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(FRIENDLYParser.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(FRIENDLYParser.BlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#blockStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockStatement(FRIENDLYParser.BlockStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#blockStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockStatement(FRIENDLYParser.BlockStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#localVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterLocalVariableDeclarationStatement(FRIENDLYParser.LocalVariableDeclarationStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#localVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitLocalVariableDeclarationStatement(FRIENDLYParser.LocalVariableDeclarationStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#localVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterLocalVariableDeclaration(FRIENDLYParser.LocalVariableDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#localVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitLocalVariableDeclaration(FRIENDLYParser.LocalVariableDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#statement}.
 	 * @param ctx the parse tree
@@ -148,115 +719,165 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 */
 	void exitStatement(FRIENDLYParser.StatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#assignment_statement}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#catchClause}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment_statement(FRIENDLYParser.Assignment_statementContext ctx);
+	void enterCatchClause(FRIENDLYParser.CatchClauseContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#assignment_statement}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#catchClause}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment_statement(FRIENDLYParser.Assignment_statementContext ctx);
+	void exitCatchClause(FRIENDLYParser.CatchClauseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#funccall_statement}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#catchType}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunccall_statement(FRIENDLYParser.Funccall_statementContext ctx);
+	void enterCatchType(FRIENDLYParser.CatchTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#funccall_statement}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#catchType}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunccall_statement(FRIENDLYParser.Funccall_statementContext ctx);
+	void exitCatchType(FRIENDLYParser.CatchTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#actual_parameter_list}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#finallyBlock}.
 	 * @param ctx the parse tree
 	 */
-	void enterActual_parameter_list(FRIENDLYParser.Actual_parameter_listContext ctx);
+	void enterFinallyBlock(FRIENDLYParser.FinallyBlockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#actual_parameter_list}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#finallyBlock}.
 	 * @param ctx the parse tree
 	 */
-	void exitActual_parameter_list(FRIENDLYParser.Actual_parameter_listContext ctx);
+	void exitFinallyBlock(FRIENDLYParser.FinallyBlockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#actual_params}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#resourceSpecification}.
 	 * @param ctx the parse tree
 	 */
-	void enterActual_params(FRIENDLYParser.Actual_paramsContext ctx);
+	void enterResourceSpecification(FRIENDLYParser.ResourceSpecificationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#actual_params}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#resourceSpecification}.
 	 * @param ctx the parse tree
 	 */
-	void exitActual_params(FRIENDLYParser.Actual_paramsContext ctx);
+	void exitResourceSpecification(FRIENDLYParser.ResourceSpecificationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#multiple_actual_parameters}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#resources}.
 	 * @param ctx the parse tree
 	 */
-	void enterMultiple_actual_parameters(FRIENDLYParser.Multiple_actual_parametersContext ctx);
+	void enterResources(FRIENDLYParser.ResourcesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#multiple_actual_parameters}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#resources}.
 	 * @param ctx the parse tree
 	 */
-	void exitMultiple_actual_parameters(FRIENDLYParser.Multiple_actual_parametersContext ctx);
+	void exitResources(FRIENDLYParser.ResourcesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#return_statement}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#resource}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturn_statement(FRIENDLYParser.Return_statementContext ctx);
+	void enterResource(FRIENDLYParser.ResourceContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#return_statement}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#resource}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturn_statement(FRIENDLYParser.Return_statementContext ctx);
+	void exitResource(FRIENDLYParser.ResourceContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#if_statement}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#switchBlockStatementGroup}.
 	 * @param ctx the parse tree
 	 */
-	void enterIf_statement(FRIENDLYParser.If_statementContext ctx);
+	void enterSwitchBlockStatementGroup(FRIENDLYParser.SwitchBlockStatementGroupContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#if_statement}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#switchBlockStatementGroup}.
 	 * @param ctx the parse tree
 	 */
-	void exitIf_statement(FRIENDLYParser.If_statementContext ctx);
+	void exitSwitchBlockStatementGroup(FRIENDLYParser.SwitchBlockStatementGroupContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#while_statement}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#switchLabel}.
 	 * @param ctx the parse tree
 	 */
-	void enterWhile_statement(FRIENDLYParser.While_statementContext ctx);
+	void enterSwitchLabel(FRIENDLYParser.SwitchLabelContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#while_statement}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#switchLabel}.
 	 * @param ctx the parse tree
 	 */
-	void exitWhile_statement(FRIENDLYParser.While_statementContext ctx);
+	void exitSwitchLabel(FRIENDLYParser.SwitchLabelContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#do_while_statement}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#forControl}.
 	 * @param ctx the parse tree
 	 */
-	void enterDo_while_statement(FRIENDLYParser.Do_while_statementContext ctx);
+	void enterForControl(FRIENDLYParser.ForControlContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#do_while_statement}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#forControl}.
 	 * @param ctx the parse tree
 	 */
-	void exitDo_while_statement(FRIENDLYParser.Do_while_statementContext ctx);
+	void exitForControl(FRIENDLYParser.ForControlContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#for_statement}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#forInit}.
 	 * @param ctx the parse tree
 	 */
-	void enterFor_statement(FRIENDLYParser.For_statementContext ctx);
+	void enterForInit(FRIENDLYParser.ForInitContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#for_statement}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#forInit}.
 	 * @param ctx the parse tree
 	 */
-	void exitFor_statement(FRIENDLYParser.For_statementContext ctx);
+	void exitForInit(FRIENDLYParser.ForInitContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#statement_list}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#enhancedForControl}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement_list(FRIENDLYParser.Statement_listContext ctx);
+	void enterEnhancedForControl(FRIENDLYParser.EnhancedForControlContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#statement_list}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#enhancedForControl}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement_list(FRIENDLYParser.Statement_listContext ctx);
+	void exitEnhancedForControl(FRIENDLYParser.EnhancedForControlContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#forUpdate}.
+	 * @param ctx the parse tree
+	 */
+	void enterForUpdate(FRIENDLYParser.ForUpdateContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#forUpdate}.
+	 * @param ctx the parse tree
+	 */
+	void exitForUpdate(FRIENDLYParser.ForUpdateContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#parExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterParExpression(FRIENDLYParser.ParExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#parExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitParExpression(FRIENDLYParser.ParExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#expressionList}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionList(FRIENDLYParser.ExpressionListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#expressionList}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionList(FRIENDLYParser.ExpressionListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#statementExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatementExpression(FRIENDLYParser.StatementExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#statementExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatementExpression(FRIENDLYParser.StatementExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#constantExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstantExpression(FRIENDLYParser.ConstantExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#constantExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstantExpression(FRIENDLYParser.ConstantExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#expression}.
 	 * @param ctx the parse tree
@@ -268,203 +889,133 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 */
 	void exitExpression(FRIENDLYParser.ExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#string_expression}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#primary}.
 	 * @param ctx the parse tree
 	 */
-	void enterString_expression(FRIENDLYParser.String_expressionContext ctx);
+	void enterPrimary(FRIENDLYParser.PrimaryContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#string_expression}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#primary}.
 	 * @param ctx the parse tree
 	 */
-	void exitString_expression(FRIENDLYParser.String_expressionContext ctx);
+	void exitPrimary(FRIENDLYParser.PrimaryContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#num_expression}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#creator}.
 	 * @param ctx the parse tree
 	 */
-	void enterNum_expression(FRIENDLYParser.Num_expressionContext ctx);
+	void enterCreator(FRIENDLYParser.CreatorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#num_expression}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#creator}.
 	 * @param ctx the parse tree
 	 */
-	void exitNum_expression(FRIENDLYParser.Num_expressionContext ctx);
+	void exitCreator(FRIENDLYParser.CreatorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#num_term}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#createdName}.
 	 * @param ctx the parse tree
 	 */
-	void enterNum_term(FRIENDLYParser.Num_termContext ctx);
+	void enterCreatedName(FRIENDLYParser.CreatedNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#num_term}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#createdName}.
 	 * @param ctx the parse tree
 	 */
-	void exitNum_term(FRIENDLYParser.Num_termContext ctx);
+	void exitCreatedName(FRIENDLYParser.CreatedNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#num_factor}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#innerCreator}.
 	 * @param ctx the parse tree
 	 */
-	void enterNum_factor(FRIENDLYParser.Num_factorContext ctx);
+	void enterInnerCreator(FRIENDLYParser.InnerCreatorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#num_factor}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#innerCreator}.
 	 * @param ctx the parse tree
 	 */
-	void exitNum_factor(FRIENDLYParser.Num_factorContext ctx);
+	void exitInnerCreator(FRIENDLYParser.InnerCreatorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#num_identifier}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#arrayCreatorRest}.
 	 * @param ctx the parse tree
 	 */
-	void enterNum_identifier(FRIENDLYParser.Num_identifierContext ctx);
+	void enterArrayCreatorRest(FRIENDLYParser.ArrayCreatorRestContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#num_identifier}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#arrayCreatorRest}.
 	 * @param ctx the parse tree
 	 */
-	void exitNum_identifier(FRIENDLYParser.Num_identifierContext ctx);
+	void exitArrayCreatorRest(FRIENDLYParser.ArrayCreatorRestContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#bool_expression}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#classCreatorRest}.
 	 * @param ctx the parse tree
 	 */
-	void enterBool_expression(FRIENDLYParser.Bool_expressionContext ctx);
+	void enterClassCreatorRest(FRIENDLYParser.ClassCreatorRestContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#bool_expression}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#classCreatorRest}.
 	 * @param ctx the parse tree
 	 */
-	void exitBool_expression(FRIENDLYParser.Bool_expressionContext ctx);
+	void exitClassCreatorRest(FRIENDLYParser.ClassCreatorRestContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#bool_expression_for}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#explicitGenericInvocation}.
 	 * @param ctx the parse tree
 	 */
-	void enterBool_expression_for(FRIENDLYParser.Bool_expression_forContext ctx);
+	void enterExplicitGenericInvocation(FRIENDLYParser.ExplicitGenericInvocationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#bool_expression_for}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#explicitGenericInvocation}.
 	 * @param ctx the parse tree
 	 */
-	void exitBool_expression_for(FRIENDLYParser.Bool_expression_forContext ctx);
+	void exitExplicitGenericInvocation(FRIENDLYParser.ExplicitGenericInvocationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#rel_op}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#nonWildcardTypeArguments}.
 	 * @param ctx the parse tree
 	 */
-	void enterRel_op(FRIENDLYParser.Rel_opContext ctx);
+	void enterNonWildcardTypeArguments(FRIENDLYParser.NonWildcardTypeArgumentsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#rel_op}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#nonWildcardTypeArguments}.
 	 * @param ctx the parse tree
 	 */
-	void exitRel_op(FRIENDLYParser.Rel_opContext ctx);
+	void exitNonWildcardTypeArguments(FRIENDLYParser.NonWildcardTypeArgumentsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#bool_logical}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#typeArgumentsOrDiamond}.
 	 * @param ctx the parse tree
 	 */
-	void enterBool_logical(FRIENDLYParser.Bool_logicalContext ctx);
+	void enterTypeArgumentsOrDiamond(FRIENDLYParser.TypeArgumentsOrDiamondContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#bool_logical}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#typeArgumentsOrDiamond}.
 	 * @param ctx the parse tree
 	 */
-	void exitBool_logical(FRIENDLYParser.Bool_logicalContext ctx);
+	void exitTypeArgumentsOrDiamond(FRIENDLYParser.TypeArgumentsOrDiamondContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#bool_term}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#nonWildcardTypeArgumentsOrDiamond}.
 	 * @param ctx the parse tree
 	 */
-	void enterBool_term(FRIENDLYParser.Bool_termContext ctx);
+	void enterNonWildcardTypeArgumentsOrDiamond(FRIENDLYParser.NonWildcardTypeArgumentsOrDiamondContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#bool_term}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#nonWildcardTypeArgumentsOrDiamond}.
 	 * @param ctx the parse tree
 	 */
-	void exitBool_term(FRIENDLYParser.Bool_termContext ctx);
+	void exitNonWildcardTypeArgumentsOrDiamond(FRIENDLYParser.NonWildcardTypeArgumentsOrDiamondContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#bool_factor}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#superSuffix}.
 	 * @param ctx the parse tree
 	 */
-	void enterBool_factor(FRIENDLYParser.Bool_factorContext ctx);
+	void enterSuperSuffix(FRIENDLYParser.SuperSuffixContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#bool_factor}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#superSuffix}.
 	 * @param ctx the parse tree
 	 */
-	void exitBool_factor(FRIENDLYParser.Bool_factorContext ctx);
+	void exitSuperSuffix(FRIENDLYParser.SuperSuffixContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#bool_identifier}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#explicitGenericInvocationSuffix}.
 	 * @param ctx the parse tree
 	 */
-	void enterBool_identifier(FRIENDLYParser.Bool_identifierContext ctx);
+	void enterExplicitGenericInvocationSuffix(FRIENDLYParser.ExplicitGenericInvocationSuffixContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#bool_identifier}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#explicitGenericInvocationSuffix}.
 	 * @param ctx the parse tree
 	 */
-	void exitBool_identifier(FRIENDLYParser.Bool_identifierContext ctx);
+	void exitExplicitGenericInvocationSuffix(FRIENDLYParser.ExplicitGenericInvocationSuffixContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#constdecl_list}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#arguments}.
 	 * @param ctx the parse tree
 	 */
-	void enterConstdecl_list(FRIENDLYParser.Constdecl_listContext ctx);
+	void enterArguments(FRIENDLYParser.ArgumentsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#constdecl_list}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#arguments}.
 	 * @param ctx the parse tree
 	 */
-	void exitConstdecl_list(FRIENDLYParser.Constdecl_listContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#const_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterConst_statement(FRIENDLYParser.Const_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#const_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitConst_statement(FRIENDLYParser.Const_statementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#constant}.
-	 * @param ctx the parse tree
-	 */
-	void enterConstant(FRIENDLYParser.ConstantContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#constant}.
-	 * @param ctx the parse tree
-	 */
-	void exitConstant(FRIENDLYParser.ConstantContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#sign}.
-	 * @param ctx the parse tree
-	 */
-	void enterSign(FRIENDLYParser.SignContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#sign}.
-	 * @param ctx the parse tree
-	 */
-	void exitSign(FRIENDLYParser.SignContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#output}.
-	 * @param ctx the parse tree
-	 */
-	void enterOutput(FRIENDLYParser.OutputContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#output}.
-	 * @param ctx the parse tree
-	 */
-	void exitOutput(FRIENDLYParser.OutputContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#output_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterOutput_list(FRIENDLYParser.Output_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#output_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitOutput_list(FRIENDLYParser.Output_listContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#input}.
-	 * @param ctx the parse tree
-	 */
-	void enterInput(FRIENDLYParser.InputContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#input}.
-	 * @param ctx the parse tree
-	 */
-	void exitInput(FRIENDLYParser.InputContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#input_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterInput_list(FRIENDLYParser.Input_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#input_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitInput_list(FRIENDLYParser.Input_listContext ctx);
+	void exitArguments(FRIENDLYParser.ArgumentsContext ctx);
 }
