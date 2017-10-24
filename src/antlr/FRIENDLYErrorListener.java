@@ -19,14 +19,11 @@ public class FRIENDLYErrorListener implements org.antlr.v4.runtime.ANTLRErrorLis
         List<String> stack = ((Parser)recognizer).getRuleInvocationStack();
         Collections.reverse(stack);
         StringBuilder buf = new StringBuilder();
-        buf.append("rule stack: "+stack+" ");
+       // buf.append("rule stack: "+stack+" ");
         buf.append("line "+i+":"+i1+" at "+
                 o+": "+s);
-        JDialog dialog = new JDialog();
-        Container contentPane = dialog.getContentPane();
-        contentPane.add(new JLabel(buf.toString()));
-        contentPane.setBackground(Color.white);
-        System.out.println(buf);
+        SyntaxErrorCollector.getInstance().recordError(i, i1, s);
+       // System.out.println(buf);
 //        dialog.setTitle("Syntax error");
 //        dialog.pack();
 //        dialog.setLocationRelativeTo(null);

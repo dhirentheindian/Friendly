@@ -1,6 +1,7 @@
 package view;
 
 import antlr.*;
+import antlr.Error;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
@@ -8,6 +9,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -16,11 +19,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FriendlyMenu {
     private JPanel panelFriendly;
     private JButton buttonCompile;
+
     private JPanel panelInput;
     private JPanel panelOutput;
     private JPanel panelCentral;
@@ -29,33 +36,73 @@ public class FriendlyMenu {
     private JPanel panelDisplay;
     private JScrollPane scrollPaneInput;
     private JScrollPane scrollPaneOutput;
+    private JButton buttonReset;
+    private JList<Error> listOutput;
+    DefaultListModel<Error> model = new DefaultListModel<>();
+
     private Highlighter.HighlightPainter painter;
     private int textAreaOutputColorValue=100;
     public FriendlyMenu() {
         Color c = new Color(textAreaOutputColorValue,textAreaOutputColorValue,textAreaOutputColorValue);
-        textOutput.setBackground(c);
-        textOutput.setForeground(Color.white);
+        buttonReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SyntaxErrorCollector.getInstance().reset();
+                model.clear();
+            }
+        });
 
+
+        listOutput.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()){
+                    JList source = (JList)e.getSource();
+                    String selected = source.getSelectedValue().toString();
+
+
+                    ArrayList<Error> temp = SyntaxErrorCollector.getInstance().getErrorList();
+                    for(Error t:temp){
+                        if(t.toString().equals(selected)){
+                            DefaultHighlighter highlighter =  (DefaultHighlighter)textInput.getHighlighter();
+                            DefaultHighlighter.DefaultHighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter( Color.RED );
+                            highlighter.setDrawsLayeredHighlights(false); // this is the key line
+
+                            try {
+                                int start = textInput.getLineStartOffset(t.getLine()-1);
+                                int end = textInput.getLineEndOffset(t.getLine()-1);
+                                highlighter.addHighlight(start,end,painter);
+                            } catch (BadLocationException e1) {
+                                e1.printStackTrace();
+                            }
+
+                        }
+                    }
+
+                }
+            }
+        });
         buttonCompile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Create a stream to hold the output
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+             /*   ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 PrintStream ps = new PrintStream(baos);
-                // IMPORTANT: Save the old System.out!
                 PrintStream old = System.out;
+                System.setOut(ps);*/
+                // IMPORTANT: Save the old System.out!
+
                 // Tell Java to use your special stream
-                System.setOut(ps);
+
                 // Print some output: goes to your special stream
                 //System.out.println("Foofoofoo!");
-                painter = new DefaultHighlighter.DefaultHighlightPainter(Color.cyan);
-                try {
-                    textInput.getHighlighter().addHighlight(0,20,painter);
-                } catch (BadLocationException e1) {
-                    e1.printStackTrace();
-                }
+
+                SyntaxErrorCollector.getInstance().reset();
 
                 String str = textInput.getText();
+                String s[] = str.split("\\r?\\n");
+                ArrayList<String> arrList = new ArrayList<>(Arrays.asList(s)) ;
+
                 ANTLRInputStream input = new ANTLRInputStream(str);
                 FRIENDLYLexer lexer = new FRIENDLYLexer(input);
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -76,15 +123,26 @@ public class FriendlyMenu {
 
                 // Put things back
                 System.out.flush();
-                System.setOut(old);
+             //   System.setOut(old);
                 // Show what happened
-                textOutput.setText(baos.toString());
+                if(SyntaxErrorCollector.getInstance().countErrors() == 0) {
+                    model.addElement(new Error(0,0,"Code Compiled Successfully"));
+
+                }else {
+                    ArrayList<Error> eList = SyntaxErrorCollector.getInstance().getErrorList();
+                    for(Error err:eList) {
+                        model.addElement(err);
+
+                    }
+                }
+                listOutput.setModel(model);
             }
         });
     }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("FriendlyMenu");
+
         frame.setContentPane(new FriendlyMenu().panelFriendly);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
