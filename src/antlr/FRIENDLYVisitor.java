@@ -432,6 +432,12 @@ public interface FRIENDLYVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLocalVariableDeclaration(FRIENDLYParser.LocalVariableDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FRIENDLYParser#commonErrorStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommonErrorStatement(FRIENDLYParser.CommonErrorStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FRIENDLYParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
