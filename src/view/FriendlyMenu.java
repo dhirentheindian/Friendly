@@ -71,6 +71,7 @@ public class FriendlyMenu {
                             try {
                                 int start = textInput.getLineStartOffset(t.getLine()-1);
                                 int end = textInput.getLineEndOffset(t.getLine()-1);
+                                highlighter.removeAllHighlights();
                                 highlighter.addHighlight(start,end,painter);
                             } catch (BadLocationException e1) {
                                 e1.printStackTrace();
