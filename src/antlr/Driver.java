@@ -23,7 +23,7 @@ public class Driver {
 	        FRIENDLYParser parser = new FRIENDLYParser(tokens);
 			parser.addErrorListener(new FRIENDLYErrorListener());
 
-			ParseTree tree = parser.start();
+			ParseTree tree = parser.compilationUnit();
 			ParseTreeWalker walker = new ParseTreeWalker();
 
 

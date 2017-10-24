@@ -14,7 +14,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library name="antlr-4.7-complete.jar">
         <CLASSES>
           <root url="file://C:/Program Files/Java/libs/antlr-4.7-complete.jar" />

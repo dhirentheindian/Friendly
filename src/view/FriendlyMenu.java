@@ -1,8 +1,6 @@
 package view;
 
-import antlr.BaseTester;
-import antlr.FRIENDLYLexer;
-import antlr.FRIENDLYParser;
+import antlr.*;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
@@ -10,6 +8,9 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +27,7 @@ public class FriendlyMenu {
     private JTextArea textInput;
     private JTextArea textOutput;
     private JPanel panelDisplay;
-
+    private Highlighter.HighlightPainter painter;
     private int textAreaOutputColorValue=100;
     public FriendlyMenu() {
         Color c = new Color(textAreaOutputColorValue,textAreaOutputColorValue,textAreaOutputColorValue);
@@ -45,21 +46,29 @@ public class FriendlyMenu {
                 System.setOut(ps);
                 // Print some output: goes to your special stream
                 //System.out.println("Foofoofoo!");
-
-
+                painter = new DefaultHighlighter.DefaultHighlightPainter(Color.cyan);
+                try {
+                    textInput.getHighlighter().addHighlight(0,20,painter);
+                } catch (BadLocationException e1) {
+                    e1.printStackTrace();
+                }
 
                 String str = textInput.getText();
                 ANTLRInputStream input = new ANTLRInputStream(str);
                 FRIENDLYLexer lexer = new FRIENDLYLexer(input);
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 FRIENDLYParser parser = new FRIENDLYParser(tokens);
-                ParseTree tree = parser.start();
+                parser.removeErrorListeners();
+                parser.setErrorHandler(new MyErrorStrategy());
+
+                parser.addErrorListener(new FRIENDLYErrorListener());
+
+                ParseTree tree = parser.compilationUnit();
                 ParseTreeWalker walker = new ParseTreeWalker();
+                
+
                 tokens.fill();
-                for (Token tok: tokens.getTokens()){
-                    System.out.println(tok.getText() + "-->" + lexer.VOCABULARY.getSymbolicName(tok.getType()));
-                }
-                System.out.println(tree.toStringTree(parser));
+
                 walker.walk(new BaseTester(),tree);
 
 

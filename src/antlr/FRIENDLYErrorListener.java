@@ -7,6 +7,8 @@ import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
@@ -16,9 +18,21 @@ public class FRIENDLYErrorListener implements org.antlr.v4.runtime.ANTLRErrorLis
     public void syntaxError(Recognizer<?, ?> recognizer, Object o, int i, int i1, String s, RecognitionException e) {
         List<String> stack = ((Parser)recognizer).getRuleInvocationStack();
         Collections.reverse(stack);
-        System.err.println("rule stack: "+stack);
-        System.err.println("line "+i+":"+i1+" at "+ o+": "+s);
+        StringBuilder buf = new StringBuilder();
+        buf.append("rule stack: "+stack+" ");
+        buf.append("line "+i+":"+i1+" at "+
+                o+": "+s);
+        JDialog dialog = new JDialog();
+        Container contentPane = dialog.getContentPane();
+        contentPane.add(new JLabel(buf.toString()));
+        contentPane.setBackground(Color.white);
+        dialog.setTitle("Syntax error");
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dialog.setVisible(true);
     }
+
 
 
     @Override
