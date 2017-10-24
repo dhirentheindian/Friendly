@@ -855,6 +855,18 @@ public class FRIENDLYBaseListener implements FRIENDLYListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCommonErrorStatement(FRIENDLYParser.CommonErrorStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCommonErrorStatement(FRIENDLYParser.CommonErrorStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStatement(FRIENDLYParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}

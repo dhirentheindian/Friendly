@@ -709,6 +709,16 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 */
 	void exitLocalVariableDeclaration(FRIENDLYParser.LocalVariableDeclarationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#commonErrorStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommonErrorStatement(FRIENDLYParser.CommonErrorStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#commonErrorStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommonErrorStatement(FRIENDLYParser.CommonErrorStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#statement}.
 	 * @param ctx the parse tree
 	 */
