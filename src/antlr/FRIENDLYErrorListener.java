@@ -26,11 +26,12 @@ public class FRIENDLYErrorListener implements org.antlr.v4.runtime.ANTLRErrorLis
         Container contentPane = dialog.getContentPane();
         contentPane.add(new JLabel(buf.toString()));
         contentPane.setBackground(Color.white);
-        dialog.setTitle("Syntax error");
-        dialog.pack();
-        dialog.setLocationRelativeTo(null);
-        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        dialog.setVisible(true);
+        System.out.println(buf);
+//        dialog.setTitle("Syntax error");
+//        dialog.pack();
+//        dialog.setLocationRelativeTo(null);
+//        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        dialog.setVisible(true);
     }
 
 

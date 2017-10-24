@@ -27,6 +27,8 @@ public class FriendlyMenu {
     private JTextArea textInput;
     private JTextArea textOutput;
     private JPanel panelDisplay;
+    private JScrollPane scrollPaneInput;
+    private JScrollPane scrollPaneOutput;
     private Highlighter.HighlightPainter painter;
     private int textAreaOutputColorValue=100;
     public FriendlyMenu() {
@@ -87,5 +89,6 @@ public class FriendlyMenu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 }
