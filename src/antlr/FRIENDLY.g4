@@ -385,6 +385,8 @@ defaultValue
 
 block
     :   '{' blockStatement* '}'
+    |   '{' blockStatement* {notifyErrorListeners("Uneven brackets; may be caused by missing closing '}' ");}
+    |   '{' blockStatement* '}' '}' {notifyErrorListeners("Uneven brackets; may be caused by excess closing '}' ");}
     ;
 
 blockStatement
@@ -410,7 +412,6 @@ commonErrorStatement
     |   'do' statement 'while' parExpression {notifyErrorListeners("Missing ';' at the end of the line.");}
     |   'return' expression? {notifyErrorListeners("Missing ';' at the end of the line.");}
     |   'break' Identifier? {notifyErrorListeners("Missing ';' at the end of the line.");}
-    |
     ;
 
 statement
