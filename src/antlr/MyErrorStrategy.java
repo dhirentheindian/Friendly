@@ -28,8 +28,9 @@ public class MyErrorStrategy extends DefaultErrorStrategy {
 
     @Override
     protected void reportInputMismatch(Parser parser, InputMismatchException e) {
-        String msg = "[INPUT MISMATCH] Input '" + e.getOffendingToken().getText() + "' is not the expected token. "+e.getExpectedTokens().toString(parser.getVocabulary()) +" was expected." ; // nonstandard msg
+        String msg = "[INPUT MISMATCH] Input '" + e.getOffendingToken().getText() + "' is not the expected token. Expected token/s is/are "+        e.getExpectedTokens().toString(parser.getVocabulary()) +"." ; // nonstandard msg
         parser.notifyErrorListeners(e.getOffendingToken(), msg, e);
+
     }
 
     protected void reportUnwantedToken(Parser recognizer) {

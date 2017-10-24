@@ -58,7 +58,12 @@ public class FriendlyMenu {
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting()){
                     JList source = (JList)e.getSource();
-                    String selected = source.getSelectedValue().toString();
+                    String selected ="";
+                    try{
+                        selected = source.getSelectedValue().toString();
+                    }catch (NullPointerException npe){
+                        System.out.println("NPE averted");
+                    }
 
 
                     ArrayList<Error> temp = SyntaxErrorCollector.getInstance().getErrorList();
