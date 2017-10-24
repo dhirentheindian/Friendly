@@ -31,13 +31,13 @@ public class FriendlyMenu {
     private JPanel panelInput;
     private JPanel panelOutput;
     private JPanel panelCentral;
-    private JTextArea textInput;
     private JTextArea textOutput;
     private JPanel panelDisplay;
     private JScrollPane scrollPaneInput;
     private JScrollPane scrollPaneOutput;
     private JButton buttonReset;
     private JList<Error> listOutput;
+    private LineNumberedPaper textAreaInput;
     DefaultListModel<Error> model = new DefaultListModel<>();
 
     private Highlighter.HighlightPainter painter;
@@ -64,13 +64,13 @@ public class FriendlyMenu {
                     ArrayList<Error> temp = SyntaxErrorCollector.getInstance().getErrorList();
                     for(Error t:temp){
                         if(t.toString().equals(selected)){
-                            DefaultHighlighter highlighter =  (DefaultHighlighter)textInput.getHighlighter();
+                            DefaultHighlighter highlighter =  (DefaultHighlighter)textAreaInput.getHighlighter();
                             DefaultHighlighter.DefaultHighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter( Color.RED );
                             highlighter.setDrawsLayeredHighlights(false); // this is the key line
 
                             try {
-                                int start = textInput.getLineStartOffset(t.getLine()-1);
-                                int end = textInput.getLineEndOffset(t.getLine()-1);
+                                int start = textAreaInput.getLineStartOffset(t.getLine()-1);
+                                int end = textAreaInput.getLineEndOffset(t.getLine()-1);
                                 highlighter.removeAllHighlights();
                                 highlighter.addHighlight(start,end,painter);
                             } catch (BadLocationException e1) {
@@ -100,7 +100,7 @@ public class FriendlyMenu {
 
                 SyntaxErrorCollector.getInstance().reset();
 
-                String str = textInput.getText();
+                String str = textAreaInput.getText();
                 String s[] = str.split("\\r?\\n");
                 ArrayList<String> arrList = new ArrayList<>(Arrays.asList(s)) ;
 
@@ -149,5 +149,11 @@ public class FriendlyMenu {
         frame.pack();
         frame.setVisible(true);
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        textAreaInput = new LineNumberedPaper(999,999);
+
     }
 }

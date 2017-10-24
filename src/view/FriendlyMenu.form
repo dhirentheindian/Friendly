@@ -54,7 +54,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="1faca" class="javax.swing.JTextArea" binding="textInput">
+                  <component id="167d4" class="view.LineNumberedPaper" binding="textAreaInput" custom-create="true">
                     <constraints/>
                     <properties>
                       <lineWrap value="true"/>
