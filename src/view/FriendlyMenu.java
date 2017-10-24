@@ -44,6 +44,8 @@ public class FriendlyMenu {
     private int textAreaOutputColorValue=100;
     public FriendlyMenu() {
         Color c = new Color(textAreaOutputColorValue,textAreaOutputColorValue,textAreaOutputColorValue);
+        listOutput.setBackground(c);
+        listOutput.setForeground(Color.white);
         buttonReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
