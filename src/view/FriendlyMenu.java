@@ -122,11 +122,11 @@ public class FriendlyMenu {
 
                 ParseTree tree = parser.compilationUnit();
                 ParseTreeWalker walker = new ParseTreeWalker();
-                
+                MyListener treeListener = new MyListener();
+                walker.walk(treeListener,tree);
+                System.out.println(tree.toStringTree(parser));
 
-                tokens.fill();
-
-                walker.walk(new BaseTester(),tree);
+                //walker.walk(new BaseTester(),tree);
 
 
                 // Put things back
