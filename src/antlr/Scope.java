@@ -19,7 +19,9 @@ public class Scope {
     public void addVariable(String key, Value value){
         variables.put(key, value);
     }
-
+    public int getVariablesSize(){
+        return variables.size();
+    }
     public Value getVariable(String key){
         return variables.get(key);
     }
