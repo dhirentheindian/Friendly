@@ -4,7 +4,6 @@ import antlr.*;
 import antlr.Error;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -17,12 +16,8 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class FriendlyMenu {
     private JPanel panelFriendly;
@@ -118,7 +113,7 @@ public class FriendlyMenu {
                 parser.removeErrorListeners();
                 parser.setErrorHandler(new MyErrorStrategy());
 
-                parser.addErrorListener(new FRIENDLYErrorListener());
+                parser.addErrorListener(new CustomFRIENDLYErrorListener());
 
                 ParseTree tree = parser.compilationUnit();
                 ParseTreeWalker walker = new ParseTreeWalker();

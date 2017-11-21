@@ -160,6 +160,7 @@ memberDeclaration
 /* We use rule this even for void methods which cannot have [] after parameters.
    This simplifies grammar and we can consider void to be a type, which
    renders the [] matching as a context-sensitive issue or a semantic check
+
    for invalid return type after parsing.
  */
 methodDeclaration
@@ -385,8 +386,8 @@ defaultValue
 
 block
     :   '{' blockStatement* '}'
-    |   '{' blockStatement* {notifyErrorListeners("Uneven brackets; may be caused by missing closing '}' ");}
-    |   '{' blockStatement* '}' '}' {notifyErrorListeners("Uneven brackets; may be caused by excess closing '}' ");}
+ //   |   '{' blockStatement* {notifyErrorListeners("Uneven brackets; may be caused by missing closing '}' ");}
+ //   |   '{' blockStatement* '}' '}' {notifyErrorListeners("Uneven brackets; may be caused by excess closing '}' ");}
     ;
 
 blockStatement
@@ -429,6 +430,9 @@ statement
     |   'throw' expression ';'
     |   'break' Identifier? ';'
     |   'continue' Identifier? ';'
+    |   'print'  '(' Identifier ')' ';'
+    |   'print'  '(' StringLiteral ')' ';'
+    |   'scan' '('')'   ';'
     |   ';'
     |   statementExpression ';'
     |   Identifier ':' statement

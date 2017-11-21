@@ -13,7 +13,7 @@ import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
 
-public class FRIENDLYErrorListener implements org.antlr.v4.runtime.ANTLRErrorListener {
+public class CustomFRIENDLYErrorListener implements org.antlr.v4.runtime.ANTLRErrorListener {
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object o, int i, int i1, String s, RecognitionException e) {
         List<String> stack = ((Parser)recognizer).getRuleInvocationStack();

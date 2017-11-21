@@ -1,13 +1,9 @@
 package antlr;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Scanner;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -21,7 +17,7 @@ public class Driver {
 	        FRIENDLYLexer lexer = new FRIENDLYLexer(input);
 	        CommonTokenStream tokens = new CommonTokenStream(lexer);
 	        FRIENDLYParser parser = new FRIENDLYParser(tokens);
-			parser.addErrorListener(new FRIENDLYErrorListener());
+			parser.addErrorListener(new CustomFRIENDLYErrorListener());
 
 			ParseTree tree = parser.compilationUnit();
 			ParseTreeWalker walker = new ParseTreeWalker();
