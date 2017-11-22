@@ -33,6 +33,9 @@ public class FriendlyMenu {
     private JButton buttonReset;
     private JList<Error> listOutput;
     private LineNumberedPaper textAreaInput;
+    private JPanel panelErrors;
+    private JScrollPane scrollPaneErrors;
+    private JList listErrors;
     DefaultListModel<Error> model = new DefaultListModel<>();
 
     private Highlighter.HighlightPainter painter;
@@ -70,14 +73,14 @@ public class FriendlyMenu {
                             DefaultHighlighter.DefaultHighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter( Color.RED );
                             highlighter.setDrawsLayeredHighlights(false); // this is the key line
 
-                            try {
-                                int start = textAreaInput.getLineStartOffset(t.getLine()-1);
-                                int end = textAreaInput.getLineEndOffset(t.getLine()-1);
-                                highlighter.removeAllHighlights();
-                                highlighter.addHighlight(start,end,painter);
-                            } catch (BadLocationException e1) {
-                                e1.printStackTrace();
-                            }
+//                            try {
+//                                int start = textAreaInput.getLineStartOffset(t.getLine()-1);
+//                                int end = textAreaInput.getLineEndOffset(t.getLine()-1);
+//                                highlighter.removeAllHighlights();
+//                                highlighter.addHighlight(start,end,painter);
+//                            } catch (BadLocationException e1) {
+//                                e1.printStackTrace();
+//                            }
 
                         }
                     }
@@ -88,6 +91,10 @@ public class FriendlyMenu {
         buttonCompile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Sample Call of popUpScan
+               // System.out.println(popUpScan("Enter My Name: "));
+
+
                 // Create a stream to hold the output
              /*   ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 PrintStream ps = new PrintStream(baos);
@@ -96,7 +103,6 @@ public class FriendlyMenu {
                 // IMPORTANT: Save the old System.out!
 
                 // Tell Java to use your special stream
-
                 // Print some output: goes to your special stream
                 //System.out.println("Foofoofoo!");
 
@@ -146,6 +152,7 @@ public class FriendlyMenu {
     public static void main(String[] args) {
         JFrame frame = new JFrame("FriendlyMenu");
 
+
         frame.setContentPane(new FriendlyMenu().panelFriendly);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -157,5 +164,10 @@ public class FriendlyMenu {
         // TODO: place custom component creation code here
         textAreaInput = new LineNumberedPaper(999,999);
 
+    }
+
+    private String popUpScan(String message){
+        String reply= JOptionPane.showInputDialog(message);
+        return reply;
     }
 }
