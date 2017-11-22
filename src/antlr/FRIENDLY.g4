@@ -432,7 +432,7 @@ statement
     |   'continue' Identifier? ';'
     |   'print'  '(' Identifier ')' ';'
     |   'print'  '(' StringLiteral ')' ';'
-    |   'scan' '('')'   ';'
+    |   'scan' '(' Identifier ')' ';'
     |   ';'
     |   statementExpression ';'
     |   Identifier ':' statement

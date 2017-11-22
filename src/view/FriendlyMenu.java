@@ -123,11 +123,9 @@ public class FriendlyMenu {
 
                 ParseTree tree = parser.compilationUnit();
                 ParseTreeWalker walker = new ParseTreeWalker();
-                MyListener treeListener = new MyListener();
-                walker.walk(treeListener,tree);
-                System.out.println(tree.toStringTree(parser));
 
                 //walker.walk(new BaseTester(),tree);
+                MyListener treeListener = new MyListener();
 
 
                 // Put things back
@@ -136,6 +134,9 @@ public class FriendlyMenu {
                 // Show what happened
                 if(SyntaxErrorCollector.getInstance().countErrors() == 0) {
                     model.addElement(new Error(0,0,"Code Compiled Successfully"));
+                    //code will run only if there are no syntax errors.
+                    walker.walk(treeListener,tree);
+                    System.out.println(tree.toStringTree(parser));
 
                 }else {
                     ArrayList<Error> eList = SyntaxErrorCollector.getInstance().getErrorList();

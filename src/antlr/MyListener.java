@@ -29,29 +29,47 @@ public class MyListener extends FRIENDLYBaseListener {
             Value value = new Value(ctx.typeType().primitiveType().getText());
 
             if (SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()) != null) {
-                System.out.println("VAR EXISTS :/");
+                System.out.println("ERROR: Variable Exists" );
                 return;
             }
-            value.setValue(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText());
-            System.out.println(SymbolTableManager.getInstance().getCurrentScope().getVariablesSize());
-            SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
-            System.out.println(SymbolTableManager.getInstance().getCurrentScope().getVariablesSize());
+            if(ctx.variableDeclarators().variableDeclarator().size() > 1){
+                for(int i = 0; i < ctx.variableDeclarators().variableDeclarator().size(); i++){
+                    if(ctx.variableDeclarators().variableDeclarator(i).variableInitializer()!=null){
+                        //when the variable can be init
+                        value.setValue(ctx.variableDeclarators().variableDeclarator(i).variableInitializer().getText());
+                        SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(i).variableDeclaratorId().getText(), value);
+                    }else if(ctx.variableDeclarators().variableDeclarator(i).variableInitializer() == null){
+
+                        SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(i).variableDeclaratorId().getText(), value);
+                    }
+                }
+            }else {
+                if (ctx.variableDeclarators().variableDeclarator(0).variableInitializer() != null) {
+                    value.setValue(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText());
+                }
+                SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
+            }
         }
+
         super.enterLocalVariableDeclaration(ctx);
 
     }
 
     @Override
     public void enterStatement(FRIENDLYParser.StatementContext ctx) {
+        //print statements
         if(ctx.getText().contains("print(")){
             if(ctx.StringLiteral() != null){
-                System.out.println(ctx.StringLiteral().getText());
+                String toPrint = ctx.StringLiteral().getText();
+                toPrint = toPrint.substring(1,toPrint.length()-1);
+                System.out.println(toPrint);
             }else if(ctx.Identifier() != null){
                 Value v = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText());
                 System.out.println(v.getValue());
             }
 
          }
+
         super.enterStatement(ctx);
     }
 
