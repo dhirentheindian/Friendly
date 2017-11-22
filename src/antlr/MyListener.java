@@ -57,8 +57,10 @@ public class MyListener extends FRIENDLYBaseListener {
 
     @Override
     public void enterStatement(FRIENDLYParser.StatementContext ctx) {
+        String statement = ctx.getText();
+
         //print statements
-        if(ctx.getText().contains("print(")){
+        if(statement.contains("print(")){
             if(ctx.StringLiteral() != null){
                 String toPrint = ctx.StringLiteral().getText();
                 toPrint = toPrint.substring(1,toPrint.length()-1);
@@ -68,7 +70,22 @@ public class MyListener extends FRIENDLYBaseListener {
                 System.out.println(v.getValue());
             }
 
-         }
+         }else if(statement.contains("scan(")){
+
+            //scanning code & then put the input in setValue below...
+            SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).setValue("");
+
+        }else if(statement.contains("if")){
+
+        }else if(statement.contains("do")){
+
+        }else if(statement.contains("for")){
+
+        }else if(statement.contains("while")){
+
+        }else if(statement.contains("switch")){
+
+        }
 
         super.enterStatement(ctx);
     }
