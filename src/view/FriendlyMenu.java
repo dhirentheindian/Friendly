@@ -167,7 +167,12 @@ public class FriendlyMenu {
 
     }
 
+    // Sample Call of popUpScan
+    // System.out.println(popUpScan("Enter My Name: "));
+    //
+    // String newString = popUpScan("Enter My Name: ");
     private String popUpScan(String message){
+
         String reply= JOptionPane.showInputDialog(message);
         return reply;
     }
