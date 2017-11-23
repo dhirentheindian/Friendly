@@ -448,7 +448,7 @@ printExpression
 
 printContent
     :
-    |   printExpression ('+' printExpression)?
+    |   printExpression ('+' printExpression)*
     |
     ;
 
