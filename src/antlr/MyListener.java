@@ -56,6 +56,10 @@ public class MyListener extends FRIENDLYBaseListener {
                 SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
             }
         }
+        else if(ctx.typeType().classOrInterfaceType()!=null){
+            Value value = new Value(ctx.typeType().classOrInterfaceType().getText());
+            
+        }
 
         super.enterLocalVariableDeclaration(ctx);
 
