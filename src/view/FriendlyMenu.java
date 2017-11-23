@@ -149,6 +149,7 @@ public class FriendlyMenu {
                 }
                 listOutput.setModel(model);
                 refreshPrintScreen();
+                baos = new ByteArrayOutputStream();
             }
         });
     }
