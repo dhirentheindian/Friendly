@@ -1,5 +1,6 @@
 package antlr;
 
+import com.udojava.evalex.Expression;
 import sun.awt.Symbol;
 import view.FriendlyMenu;
 
@@ -58,7 +59,7 @@ public class MyListener extends FRIENDLYBaseListener {
         }
         else if(ctx.typeType().classOrInterfaceType()!=null){
             Value value = new Value(ctx.typeType().classOrInterfaceType().getText());
-            
+
         }
 
         super.enterLocalVariableDeclaration(ctx);
@@ -86,6 +87,7 @@ public class MyListener extends FRIENDLYBaseListener {
                     String line = ctx.printContent().printExpression().get(0).StringLiteral().getText();
                     line = line.substring(1,line.length()-1);
                     System.out.println(line);
+                    //System.out.println(new Expression(line).eval());
                 }
                 else {
                     Value v = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.printContent().printExpression().get(0).Identifier().getText());
