@@ -16,6 +16,8 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -33,9 +35,8 @@ public class FriendlyMenu {
     private JButton buttonReset;
     private JList<Error> listOutput;
     private LineNumberedPaper textAreaInput;
-    private JPanel panelErrors;
-    private JScrollPane scrollPaneErrors;
-    private JList listErrors;
+    private JTextArea textAreaPrint;
+    private JScrollPane scrollPanePrint;
     DefaultListModel<Error> model = new DefaultListModel<>();
 
     private Highlighter.HighlightPainter painter;
@@ -96,10 +97,10 @@ public class FriendlyMenu {
 
 
                 // Create a stream to hold the output
-             /*   ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 PrintStream ps = new PrintStream(baos);
                 PrintStream old = System.out;
-                System.setOut(ps);*/
+                System.setOut(ps);
                 // IMPORTANT: Save the old System.out!
 
                 // Tell Java to use your special stream
@@ -146,6 +147,8 @@ public class FriendlyMenu {
                     }
                 }
                 listOutput.setModel(model);
+
+                textAreaPrint.setText(baos.toString());
             }
         });
     }
