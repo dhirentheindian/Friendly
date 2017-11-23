@@ -444,6 +444,18 @@ public interface FRIENDLYVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatement(FRIENDLYParser.StatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FRIENDLYParser#printExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintExpression(FRIENDLYParser.PrintExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FRIENDLYParser#printContent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintContent(FRIENDLYParser.PrintContentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FRIENDLYParser#catchClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

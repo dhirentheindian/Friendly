@@ -265,6 +265,7 @@ primitiveType
     |   'long'
     |   'float'
     |   'double'
+    |   'string'
     ;
 
 typeArguments
@@ -430,12 +431,25 @@ statement
     |   'throw' expression ';'
     |   'break' Identifier? ';'
     |   'continue' Identifier? ';'
-    |   'print'  '(' Identifier ')' ';'
-    |   'print'  '(' StringLiteral ')' ';'
+//   |   'print'  '(' Identifier ')' ';'
+//   |   'print'  '(' StringLiteral ')' ';'
+    |   'print'  '(' printContent ')' ';'
     |   'scan' '(' Identifier ')' ';'
     |   ';'
     |   statementExpression ';'
     |   Identifier ':' statement
+    ;
+
+printExpression
+    :
+    |   Identifier
+    |   StringLiteral
+    ;
+
+printContent
+    :
+    |   printExpression ('+' printExpression)?
+    |
     ;
 
 catchClause
@@ -676,6 +690,7 @@ TRY           : 'try';
 VOID          : 'void';
 VOLATILE      : 'volatile';
 WHILE         : 'while';
+STRING        : 'string';
 
 // §3.10.1 Integer Literals
 

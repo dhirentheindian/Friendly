@@ -729,6 +729,26 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 */
 	void exitStatement(FRIENDLYParser.StatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#printExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintExpression(FRIENDLYParser.PrintExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#printExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintExpression(FRIENDLYParser.PrintExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#printContent}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintContent(FRIENDLYParser.PrintContentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#printContent}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintContent(FRIENDLYParser.PrintContentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#catchClause}.
 	 * @param ctx the parse tree
 	 */
