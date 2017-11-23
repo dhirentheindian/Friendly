@@ -1,13 +1,16 @@
 package antlr;
 
 import sun.awt.Symbol;
+import view.FriendlyMenu;
 
 import javax.swing.*;
 
 public class MyListener extends FRIENDLYBaseListener {
     JFrame frame;
 
-    public MyListener(){
+    FriendlyMenu friendlyMenu;
+    public MyListener(FriendlyMenu friendlyMenu){
+        this.friendlyMenu=friendlyMenu;
     }
     @Override
     public void enterCompilationUnit(FRIENDLYParser.CompilationUnitContext ctx) {
@@ -85,6 +88,7 @@ public class MyListener extends FRIENDLYBaseListener {
                     System.out.println(v.getValue());
                 }
 
+                friendlyMenu.refreshPrintScreen();
             }else if (ctx.printContent().printExpression().size() > 1){
                 String mumble = "";
                 for (int i = 0; i < ctx.printContent().printExpression().size();i++){

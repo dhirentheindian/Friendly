@@ -38,6 +38,8 @@ public class FriendlyMenu {
     private JTextArea textAreaPrint;
     private JScrollPane scrollPanePrint;
     DefaultListModel<Error> model = new DefaultListModel<>();
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    private static FriendlyMenu friendlyMenu;
 
     private Highlighter.HighlightPainter painter;
     private int textAreaOutputColorValue=100;
@@ -97,7 +99,6 @@ public class FriendlyMenu {
 
 
                 // Create a stream to hold the output
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 PrintStream ps = new PrintStream(baos);
                 PrintStream old = System.out;
                 System.setOut(ps);
@@ -126,7 +127,7 @@ public class FriendlyMenu {
                 ParseTreeWalker walker = new ParseTreeWalker();
 
                 //walker.walk(new BaseTester(),tree);
-                MyListener treeListener = new MyListener();
+                MyListener treeListener = new MyListener(friendlyMenu);
 
 
                 // Put things back
@@ -147,8 +148,7 @@ public class FriendlyMenu {
                     }
                 }
                 listOutput.setModel(model);
-
-                textAreaPrint.setText(baos.toString());
+                refreshPrintScreen();
             }
         });
     }
@@ -156,8 +156,8 @@ public class FriendlyMenu {
     public static void main(String[] args) {
         JFrame frame = new JFrame("FriendlyMenu");
 
-
-        frame.setContentPane(new FriendlyMenu().panelFriendly);
+        friendlyMenu =new FriendlyMenu();
+        frame.setContentPane(friendlyMenu.panelFriendly);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -179,4 +179,11 @@ public class FriendlyMenu {
         String reply= JOptionPane.showInputDialog(message);
         return reply;
     }
+
+    public void refreshPrintScreen(){
+
+        textAreaPrint.setText(baos.toString());
+    }
+
+
 }
