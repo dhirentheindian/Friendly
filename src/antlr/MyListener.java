@@ -2,9 +2,12 @@ package antlr;
 
 import sun.awt.Symbol;
 
-public class MyListener extends FRIENDLYBaseListener {
-    public MyListener(){
+import javax.swing.*;
 
+public class MyListener extends FRIENDLYBaseListener {
+    JFrame frame;
+
+    public MyListener(){
     }
     @Override
     public void enterCompilationUnit(FRIENDLYParser.CompilationUnitContext ctx) {
@@ -58,9 +61,10 @@ public class MyListener extends FRIENDLYBaseListener {
     @Override
     public void enterStatement(FRIENDLYParser.StatementContext ctx) {
         String statement = ctx.getText();
-
         //print statements
-        if(statement.contains("print(")){
+
+
+        if(statement.substring(0,6).equals("print(")){
             if(ctx.StringLiteral() != null){
                 String toPrint = ctx.StringLiteral().getText();
                 toPrint = toPrint.substring(1,toPrint.length()-1);
@@ -70,12 +74,16 @@ public class MyListener extends FRIENDLYBaseListener {
                 System.out.println(v.getValue());
             }
 
-         }else if(statement.contains("scan(")){
+         }else if(statement.substring(0,5).equals("scan(")){
 
             //scanning code & then put the input in setValue below...
-            SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).setValue("");
+            String expectedType = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).getType();
+            String s = (String) JOptionPane.showInputDialog("What is your input for "+ expectedType+" "+ctx.Identifier().getText() +"?");
+            SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).setValue(s);
 
-        }else if(statement.contains("if")){
+
+        }else if(statement.substring(0,2).equals("if")){
+
 
         }else if(statement.contains("do")){
 
