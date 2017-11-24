@@ -213,11 +213,11 @@ public class MyListener extends FRIENDLYBaseListener {
             if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
                 split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
             }
+            System.out.println(new Expression(split[0]+"=="+(split[1])).eval());
 
             if (new Expression(split[0]+"=="+(split[1])).eval().equals(new BigDecimal(1))) {
-                ifPass = 1;//can exec code
-                conditionDone=1;
-                ctx.removeLastChild();
+                if(ctx.getChildCount()>3)
+                    ctx.removeLastChild();
             }
             else{
                 ParseTree child = ctx.getChild(ctx.getChildCount()-1);
@@ -237,9 +237,8 @@ public class MyListener extends FRIENDLYBaseListener {
             }
 
             if (new Expression(split[0]+"<"+(split[1])).eval().equals(new BigDecimal(1))) {
-                ifPass = 1;//can exec code
-                conditionDone=1;
-                ctx.removeLastChild();
+                if(ctx.getChildCount()>3)
+                    ctx.removeLastChild();
             }
             else{
                 ParseTree child = ctx.getChild(ctx.getChildCount()-1);
@@ -259,9 +258,8 @@ public class MyListener extends FRIENDLYBaseListener {
             }
 
             if (new Expression(split[0]+">"+(split[1])).eval().equals(new BigDecimal(1))) {
-                ifPass = 1;//can exec code
-                conditionDone=1;
-                ctx.removeLastChild();
+                if(ctx.getChildCount()>3)
+                    ctx.removeLastChild();
             }
             else{
                 ParseTree child = ctx.getChild(ctx.getChildCount()-1);
