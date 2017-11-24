@@ -1,14 +1,18 @@
 package antlr;
 
 //import com.udojava.evalex.Expression;
+import com.udojava.evalex.Expression;
+import org.antlr.v4.runtime.tree.ParseTree;
 import sun.awt.Symbol;
 import view.FriendlyMenu;
 
 import javax.swing.*;
+import java.math.BigDecimal;
 
 public class MyListener extends FRIENDLYBaseListener {
     JFrame frame;
     int ifPass = 1;
+    int conditionDone=0;
     FriendlyMenu friendlyMenu;
     public MyListener(FriendlyMenu friendlyMenu){
         this.friendlyMenu=friendlyMenu;
@@ -77,9 +81,7 @@ public class MyListener extends FRIENDLYBaseListener {
     public void enterStatement(FRIENDLYParser.StatementContext ctx) {
         String statement = ctx.getText();
         //print statements
-
-        if(ifPass==1) {
-            if (statement.substring(0, 6).equals("print(")) {
+        if (statement.substring(0, 6).equals("print(")) {
 //            if(ctx.StringLiteral() != null){
 //                String toPrint = ctx.StringLiteral().getText();
 //                toPrint = toPrint.substring(1,toPrint.length()-1);
@@ -89,76 +91,142 @@ public class MyListener extends FRIENDLYBaseListener {
 //                System.out.println(v.getValue());
 //            }
 
-                if (ctx.printContent().printExpression().size() == 1) {
-                    if (ctx.printContent().printExpression().get(0).StringLiteral() != null) {
-                        String line = ctx.printContent().printExpression().get(0).StringLiteral().getText();
-                        line = line.substring(1, line.length() - 1);
-                        System.out.println(line);
-                        //System.out.println(new Expression(line).eval());
-                    } else {
-                        Value v = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.printContent().printExpression().get(0).Identifier().getText());
-                        System.out.println(v.getValue());
-                    }
-
-                    friendlyMenu.refreshPrintScreen();
-                } else if (ctx.printContent().printExpression().size() > 1) {
-                    String mumble = "";
-                    for (int i = 0; i < ctx.printContent().printExpression().size(); i++) {
-                        if (ctx.printContent().printExpression().get(i).StringLiteral() != null) {
-                            String line = ctx.printContent().printExpression().get(i).StringLiteral().getText();
-                            line = line.substring(1, line.length() - 1);
-                            mumble += line;
-                        } else {
-                            Value v = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.printContent().printExpression().get(i).Identifier().getText());
-                            mumble += v.getValue();
-                        }
-                    }
-                    System.out.println(mumble);
-                }
-
-
-            } else if (statement.substring(0, 5).equals("scan(")) {
-
-                //scanning code & then put the input in setValue below...
-                String expectedType = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).getType();
-                String s = (String) JOptionPane.showInputDialog("What is your input for " + expectedType + " " + ctx.Identifier().getText() + "?");
-                SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).setValue(s);
-
-
-            } else if (statement.substring(0, 2).equals("if")) {
-
-                System.out.println(ctx.parExpression().expression().expression().size());
-
-                String parExp = ctx.parExpression().getText();
-                parExp = parExp.substring(1, parExp.length() - 1);
-
-                String[] split = parExp.split("eq");
-                if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null) {
-                    split[0] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue();
-                }
-                if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
-                    split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
-                }
-
-                if (split[0].equals(split[1])) {
-                    ifPass = 1;//can exec code
+            if (ctx.printContent().printExpression().size() == 1) {
+                if (ctx.printContent().printExpression().get(0).StringLiteral() != null) {
+                    String line = ctx.printContent().printExpression().get(0).StringLiteral().getText();
+                    line = line.substring(1, line.length() - 1);
+                    System.out.println(line);
+                    //System.out.println(new Expression(line).eval());
                 } else {
-                    ifPass = 0;//failed
+                    Value v = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.printContent().printExpression().get(0).Identifier().getText());
+                    System.out.println(v.getValue());
                 }
 
+                friendlyMenu.refreshPrintScreen();
+            } else if (ctx.printContent().printExpression().size() > 1) {
+                String mumble = "";
+                for (int i = 0; i < ctx.printContent().printExpression().size(); i++) {
+                    if (ctx.printContent().printExpression().get(i).StringLiteral() != null) {
+                        String line = ctx.printContent().printExpression().get(i).StringLiteral().getText();
+                        line = line.substring(1, line.length() - 1);
+                        mumble += line;
+                    } else {
+                        Value v = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.printContent().printExpression().get(i).Identifier().getText());
+                        mumble += v.getValue();
+                    }
+                }
+                System.out.println(mumble);
+            }
 
-            } else if (statement.contains("do")) {
 
-            } else if (statement.contains("for")) {
+        } else if (statement.substring(0, 5).equals("scan(")) {
 
-            } else if (statement.contains("while")) {
+            //scanning code & then put the input in setValue below...
+            String expectedType = SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).getType();
+            String s = (String) JOptionPane.showInputDialog("What is your input for " + expectedType + " " + ctx.Identifier().getText() + "?");
+            SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.Identifier().getText()).setValue(s);
 
-            } else if (statement.contains("switch")) {
+
+        } else if (statement.substring(0, 2).equals("if")) {
+            ctx=this.conditionalStatement(ctx);
+            if (ctx.statement().size()>0){
+//                System.out.println(ctx.getText());
+//                for(int x=0;x<ctx.statement().size();x++)
+//                System.out.println(ctx.statement().get(x).getText());
+            }
+
+
+        } else if (statement.contains("do")) {
+
+        } else if (statement.contains("for")) {
+
+        } else if (statement.contains("while")) {
+
+        } else if (statement.contains("switch")) {
+
+        }
+
+
+
+
+
+        super.enterStatement(ctx);
+    }
+
+    public FRIENDLYParser.StatementContext conditionalStatement(FRIENDLYParser.StatementContext ctx){
+        String parExp = ctx.parExpression().getText();
+        parExp = parExp.substring(1, parExp.length() - 1);
+
+        if(parExp.contains("eq")) {
+            String[] split = parExp.split("eq");
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null) {
+                split[0] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue();
+            }
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
+                split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
+            }
+
+            if (new Expression(split[0]+"=="+(split[1])).eval().equals(new BigDecimal(1))) {
+                ifPass = 1;//can exec code
+                conditionDone=1;
+                ctx.removeLastChild();
+            }
+            else{
+                ParseTree child = ctx.getChild(ctx.getChildCount()-1);
+                for(int x=0;x<ctx.getChildCount();x++)
+                    ctx.removeLastChild();
+
+                ctx.addAnyChild(child);
+            }
+        }
+        else if(parExp.contains("<")){
+            String[] split = parExp.split("<");
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null) {
+                split[0] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue();
+            }
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
+                split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
+            }
+
+            if (new Expression(split[0]+"<"+(split[1])).eval().equals(new BigDecimal(1))) {
+                ifPass = 1;//can exec code
+                conditionDone=1;
+                ctx.removeLastChild();
+            }
+            else{
+                ParseTree child = ctx.getChild(ctx.getChildCount()-1);
+                for(int x=0;x<ctx.getChildCount();x++)
+                    ctx.removeLastChild();
+
+                ctx.addAnyChild(child);
+            }
+        }
+        else if(parExp.contains(">")){
+            String[] split = parExp.split(">");
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null) {
+                split[0] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue();
+            }
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
+                split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
+            }
+
+            if (new Expression(split[0]+">"+(split[1])).eval().equals(new BigDecimal(1))) {
+                ifPass = 1;//can exec code
+                conditionDone=1;
+                ctx.removeLastChild();
+            }
+            else{
+                ParseTree child = ctx.getChild(ctx.getChildCount()-1);
+                for(int x=0;x<ctx.getChildCount();x++)
+                    ctx.removeLastChild();
+
+                ctx.addAnyChild(child);
 
             }
         }
-        super.enterStatement(ctx);
+        return ctx;
     }
+
 
     @Override
     public void enterMethodDeclaration(FRIENDLYParser.MethodDeclarationContext ctx) {
