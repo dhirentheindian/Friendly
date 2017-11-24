@@ -177,12 +177,6 @@ public class MyListener extends FRIENDLYBaseListener {
                         }
                     }
                 }
-            } else if( statement.contains("=")){
-
-                statement = statement.substring(0,statement.length()-1);
-                String split[] = statement.split("=");
-                SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(split[1]);
-
             }
 
         }
