@@ -328,16 +328,20 @@ public class MyListener extends FRIENDLYBaseListener {
     public boolean localVarDec(FRIENDLYParser.LocalVariableDeclarationContext ctx){
         if (ctx.typeType().primitiveType() != null) {
             Value value = new Value(ctx.typeType().primitiveType().getText());
-
             if (SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()) != null) {
                 System.out.println(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()+" ERROR: Variable Exists");
                 return false;
             }
+            System.out.println("MY TYPE IS 1 "+value.getType());
             if (ctx.variableDeclarators().variableDeclarator().size() > 1) {
                 for (int i = 0; i < ctx.variableDeclarators().variableDeclarator().size(); i++) {
                     if (ctx.variableDeclarators().variableDeclarator(i).variableInitializer() != null) {
                         //when the variable can be init
-                        value.setValue(ctx.variableDeclarators().variableDeclarator(i).variableInitializer().getText());
+                        System.out.println("MY TYPE IS 2"+value.getType());
+                        if (value.getType().equals("int")||value.getType().equals("float")||value.getType().equals("double"))
+                            value.setValue(new Expression(ctx.variableDeclarators().variableDeclarator(i).variableInitializer().getText()).eval().toString());
+                        else
+                            value.setValue(ctx.variableDeclarators().variableDeclarator(i).variableInitializer().getText());
                         SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(i).variableDeclaratorId().getText(), value);
                     } else if (ctx.variableDeclarators().variableDeclarator(i).variableInitializer() == null) {
 
@@ -346,6 +350,10 @@ public class MyListener extends FRIENDLYBaseListener {
                 }
             } else {
                 if (ctx.variableDeclarators().variableDeclarator(0).variableInitializer() != null) {
+                    System.out.println("MY TYPE IS 2"+value.getType());
+                    if (value.getType().equals("int")||value.getType().equals("float")||value.getType().equals("double"))
+                        value.setValue(new Expression(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText()).eval().toString());
+                    else
                     value.setValue(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText());
                 }
                 SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
