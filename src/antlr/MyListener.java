@@ -270,6 +270,50 @@ public class MyListener extends FRIENDLYBaseListener {
 
             }
         }
+        else if(parExp.contains(">=")){
+            String[] split = parExp.split(">=");
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null) {
+                split[0] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue();
+            }
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
+                split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
+            }
+
+            if (new Expression(split[0]+">="+(split[1])).eval().equals(new BigDecimal(1))) {
+                if(ctx.getChildCount()>3)
+                    ctx.removeLastChild();
+            }
+            else{
+                ParseTree child = ctx.getChild(ctx.getChildCount()-1);
+                for(int x=0;x<ctx.getChildCount();x++)
+                    ctx.removeLastChild();
+
+                ctx.addAnyChild(child);
+
+            }
+        }
+        else if(parExp.contains("<=")){
+            String[] split = parExp.split("<=");
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null) {
+                split[0] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue();
+            }
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
+                split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
+            }
+
+            if (new Expression(split[0]+"<="+(split[1])).eval().equals(new BigDecimal(1))) {
+                if(ctx.getChildCount()>3)
+                    ctx.removeLastChild();
+            }
+            else{
+                ParseTree child = ctx.getChild(ctx.getChildCount()-1);
+                for(int x=0;x<ctx.getChildCount();x++)
+                    ctx.removeLastChild();
+
+                ctx.addAnyChild(child);
+
+            }
+        }
         return ctx;
     }
 
