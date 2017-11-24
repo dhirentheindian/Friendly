@@ -10,9 +10,19 @@ import javax.swing.*;
 import java.math.BigDecimal;
 
 public class MyListener extends FRIENDLYBaseListener {
+
+    final static int GREATEREQUAL = 1;
+    final static int LESSEQUAL = 2;
+    final static int GREATER = 3;
+    final static int LESS = 4;
+
     JFrame frame;
     int ifPass = 1;
     int conditionDone=0;
+    int forLoopCtr = 0;
+    int forLoopCeiling = 0;
+    int forDone=0; // 1 is done, 0 is not done
+    int forLoopExp = 0;// 1 = geq, 2 = leq, 3 = g, 4 = l
     FriendlyMenu friendlyMenu;
     public MyListener(FriendlyMenu friendlyMenu){
         this.friendlyMenu=friendlyMenu;
@@ -30,39 +40,20 @@ public class MyListener extends FRIENDLYBaseListener {
 
           super.enterVariableDeclarator(ctx);
     }
-
+    public boolean variableLookup(String varName){
+        if(SymbolTableManager.getInstance().getCurrentScope().getVariable(varName) != null){
+            return true;
+        }else
+            return false;
+    }
     @Override
     public void enterLocalVariableDeclaration(FRIENDLYParser.LocalVariableDeclarationContext ctx) {
 
         //only works so far for primitive types
-        if(ifPass==1) {
-            if (ctx.typeType().primitiveType() != null) {
-                Value value = new Value(ctx.typeType().primitiveType().getText());
 
-                if (SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()) != null) {
-                    System.out.println("ERROR: Variable Exists");
-                    return;
-                }
-                if (ctx.variableDeclarators().variableDeclarator().size() > 1) {
-                    for (int i = 0; i < ctx.variableDeclarators().variableDeclarator().size(); i++) {
-                        if (ctx.variableDeclarators().variableDeclarator(i).variableInitializer() != null) {
-                            //when the variable can be init
-                            value.setValue(ctx.variableDeclarators().variableDeclarator(i).variableInitializer().getText());
-                            SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(i).variableDeclaratorId().getText(), value);
-                        } else if (ctx.variableDeclarators().variableDeclarator(i).variableInitializer() == null) {
-
-                            SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(i).variableDeclaratorId().getText(), value);
-                        }
-                    }
-                } else {
-                    if (ctx.variableDeclarators().variableDeclarator(0).variableInitializer() != null) {
-                        value.setValue(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText());
-                    }
-                    SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
-                }
-            } else if (ctx.typeType().classOrInterfaceType() != null) {
-                Value value = new Value(ctx.typeType().classOrInterfaceType().getText());
-
+        if(forDone!= 999){
+            if(ifPass==1) {
+                localVarDec(ctx);
             }
         }
         super.enterLocalVariableDeclaration(ctx);
@@ -75,6 +66,10 @@ public class MyListener extends FRIENDLYBaseListener {
         if (statement.substring(0, 2).equals("if")) {
             ifPass = 1;
         }
+        if (statement.substring(0, 3).equals("for")) {
+            forDone=1;
+        }
+
         super.exitStatement(ctx);
     }
     @Override
@@ -136,14 +131,45 @@ public class MyListener extends FRIENDLYBaseListener {
             }
 
 
-        } else if (statement.contains("do")) {
+        }else if (statement.substring(0, 3).equals("for")) {
+            if (ctx.forControl().forInit().localVariableDeclaration() != null) {
+                //variable declared successfully
+                if (localVarDec(ctx.forControl().forInit().localVariableDeclaration())) {
 
-        } else if (statement.contains("for")) {
-
-        } else if (statement.contains("while")) {
-
-        } else if (statement.contains("switch")) {
-
+                    //expression exists
+                    if (ctx.forControl().expression() != null) {
+                        String forExp = ctx.forControl().expression().getText();
+                        String split[] = new String[2];
+                        if (forExp.contains(">=")) {
+                            split = forExp.split(">=");
+                            forLoopExp = GREATEREQUAL;
+                        } else if (forExp.contains("<=")) {
+                            split = forExp.split("<=");
+                            forLoopExp = LESSEQUAL;
+                        } else if (forExp.contains(">")) {
+                            split = forExp.split(">");
+                            forLoopExp = GREATER;
+                        } else if (forExp.contains("<")) {
+                            split = forExp.split("<");
+                            forLoopExp = LESS;
+                        }
+                        if (variableLookup(split[0])) {
+                            forLoopCtr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                            forLoopCeiling = Integer.parseInt(split[1]);
+                            if(forLoopExp == LESS) {
+                                for (int i = forLoopCtr; i < forLoopCeiling; i++) {
+                                    forLoopTime(ctx);
+                                }
+                            }else if(forLoopExp == LESSEQUAL){
+                                for (int i = forLoopCtr; i <= forLoopCeiling; i++) {
+                                    forLoopTime(ctx);
+                                }
+                            }
+                            forDone = 999;
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -153,6 +179,21 @@ public class MyListener extends FRIENDLYBaseListener {
         super.enterStatement(ctx);
     }
 
+    public boolean forLoopTime(FRIENDLYParser.StatementContext ctx){
+
+        for (int x = 0; x < ctx.statement(0).block().blockStatement().size(); x++) {
+            if (ctx.statement(0).block().blockStatement(x).localVariableDeclarationStatement() != null) {
+                enterLocalVariableDeclarationStatement(ctx.statement(0).block().blockStatement(x).localVariableDeclarationStatement());
+            } else if (ctx.statement(0).block().blockStatement(x).statement() != null) {
+                enterStatement(ctx.statement(0).block().blockStatement(x).statement());
+            } else if (ctx.statement(0).block().blockStatement(x).typeDeclaration() != null) {
+                System.out.println("Type Dec!");
+            } else if (ctx.statement(0).block().blockStatement(x).commonErrorStatement() != null) {
+                System.out.println("yeahboi");
+            }
+        }
+        return true;
+    }
     public FRIENDLYParser.StatementContext conditionalStatement(FRIENDLYParser.StatementContext ctx){
         String parExp = ctx.parExpression().getText();
         parExp = parExp.substring(1, parExp.length() - 1);
@@ -235,4 +276,36 @@ public class MyListener extends FRIENDLYBaseListener {
         super.enterMethodDeclaration(ctx);
 
     }
+    public boolean localVarDec(FRIENDLYParser.LocalVariableDeclarationContext ctx){
+        if (ctx.typeType().primitiveType() != null) {
+            Value value = new Value(ctx.typeType().primitiveType().getText());
+
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()) != null) {
+                System.out.println(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()+" ERROR: Variable Exists");
+                return false;
+            }
+            if (ctx.variableDeclarators().variableDeclarator().size() > 1) {
+                for (int i = 0; i < ctx.variableDeclarators().variableDeclarator().size(); i++) {
+                    if (ctx.variableDeclarators().variableDeclarator(i).variableInitializer() != null) {
+                        //when the variable can be init
+                        value.setValue(ctx.variableDeclarators().variableDeclarator(i).variableInitializer().getText());
+                        SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(i).variableDeclaratorId().getText(), value);
+                    } else if (ctx.variableDeclarators().variableDeclarator(i).variableInitializer() == null) {
+
+                        SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(i).variableDeclaratorId().getText(), value);
+                    }
+                }
+            } else {
+                if (ctx.variableDeclarators().variableDeclarator(0).variableInitializer() != null) {
+                    value.setValue(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText());
+                }
+                SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
+            }
+            return true;
+        } else if (ctx.typeType().classOrInterfaceType() != null) {
+            Value value = new Value(ctx.typeType().classOrInterfaceType().getText());
+        }
+        return false;
+    }
+
 }
