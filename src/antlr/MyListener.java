@@ -293,11 +293,26 @@ public class MyListener extends FRIENDLYBaseListener {
         String statement  = ctx.getText();
         String[] split = statement.split("=");
         String variableType = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getType();
+
+        String[] evalSplitAddition= split[1].split("\\+");
+
+        String equation="";
+        if (variableType.equals("int")||variableType.equals("float")||variableType.equals("double")){
+            for(int x=0;x<evalSplitAddition.length;x++){
+                System.out.println("EVAL CONTENT ADDITON: "+evalSplitAddition[x]);
+                if(SymbolTableManager.getInstance().getCurrentScope().getVariable(evalSplitAddition[x])!=null)
+                    evalSplitAddition[x]=SymbolTableManager.getInstance().getCurrentScope().getVariable(evalSplitAddition[x]).getValue();
+                System.out.println("EVAL CONTENT ADDITON After: "+evalSplitAddition[x]);
+                equation= equation+evalSplitAddition[x]+"+";
+                System.out.println("EVAL CONTENT Equation : "+equation);
+            }
+            equation=equation+"0";
+        }
+        System.out.println("FINAL:"+equation);
         if(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null){
-            if (variableType.equals("int")||variableType.equals("float")||variableType.equals("double"))
-
-                SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(new Expression(split[1]).eval().toString());
-
+            if (variableType.equals("int")||variableType.equals("float")||variableType.equals("double")) {
+                SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(new Expression(equation).eval().toString());
+            }
             else
                 SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(split[1]);
 
