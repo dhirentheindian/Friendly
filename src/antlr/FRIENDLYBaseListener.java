@@ -831,6 +831,18 @@ public class FRIENDLYBaseListener implements FRIENDLYListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLocalVariableInitStatement(FRIENDLYParser.LocalVariableInitStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLocalVariableInitStatement(FRIENDLYParser.LocalVariableInitStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLocalVariableDeclarationStatement(FRIENDLYParser.LocalVariableDeclarationStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -838,6 +850,18 @@ public class FRIENDLYBaseListener implements FRIENDLYListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLocalVariableDeclarationStatement(FRIENDLYParser.LocalVariableDeclarationStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

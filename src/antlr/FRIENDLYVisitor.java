@@ -1,6 +1,5 @@
-package antlr;
-
 // Generated from FRIENDLY.g4 by ANTLR 4.7
+package antlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -420,11 +419,23 @@ public interface FRIENDLYVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlockStatement(FRIENDLYParser.BlockStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FRIENDLYParser#localVariableInitStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLocalVariableInitStatement(FRIENDLYParser.LocalVariableInitStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FRIENDLYParser#localVariableDeclarationStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLocalVariableDeclarationStatement(FRIENDLYParser.LocalVariableDeclarationStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FRIENDLYParser#localVariableInit}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link FRIENDLYParser#localVariableDeclaration}.
 	 * @param ctx the parse tree

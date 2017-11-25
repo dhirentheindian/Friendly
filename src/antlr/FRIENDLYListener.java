@@ -1,6 +1,5 @@
-package antlr;
-
 // Generated from FRIENDLY.g4 by ANTLR 4.7
+package antlr;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -689,6 +688,16 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 */
 	void exitBlockStatement(FRIENDLYParser.BlockStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#localVariableInitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterLocalVariableInitStatement(FRIENDLYParser.LocalVariableInitStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#localVariableInitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitLocalVariableInitStatement(FRIENDLYParser.LocalVariableInitStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#localVariableDeclarationStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -698,6 +707,16 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLocalVariableDeclarationStatement(FRIENDLYParser.LocalVariableDeclarationStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#localVariableInit}.
+	 * @param ctx the parse tree
+	 */
+	void enterLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#localVariableInit}.
+	 * @param ctx the parse tree
+	 */
+	void exitLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#localVariableDeclaration}.
 	 * @param ctx the parse tree

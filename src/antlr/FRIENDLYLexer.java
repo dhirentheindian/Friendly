@@ -1,6 +1,5 @@
-package antlr;
-
 // Generated from FRIENDLY.g4 by ANTLR 4.7
+package antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

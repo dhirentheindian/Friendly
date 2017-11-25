@@ -393,15 +393,20 @@ block
 
 blockStatement
     :   localVariableDeclarationStatement
+    |   localVariableInitStatement
     |   statement
     |   commonErrorStatement
     |   typeDeclaration
     ;
-
+localVariableInitStatement
+    : localVariableInit ';'
+    ;
 localVariableDeclarationStatement
     :    localVariableDeclaration ';'
     ;
-
+localVariableInit
+    :    variableDeclaratorId '=' variableInitializer
+    ;
 localVariableDeclaration
     :   variableModifier* typeType variableDeclarators
     ;
