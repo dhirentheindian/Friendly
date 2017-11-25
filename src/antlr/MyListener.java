@@ -156,6 +156,10 @@ public class MyListener extends FRIENDLYBaseListener {
                                 split = forExp.split("<");
                                 forLoopExp = LESS;
                             }
+                            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
+                                split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
+                            }
+
                             if (variableLookup(split[0])) {
                                 forLoopCtr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
                                 forLoopCeiling = Integer.parseInt(split[1]);
