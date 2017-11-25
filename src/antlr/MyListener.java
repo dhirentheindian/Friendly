@@ -353,12 +353,12 @@ public class MyListener extends FRIENDLYBaseListener {
 
     }
     public boolean localVarDec(FRIENDLYParser.LocalVariableDeclarationContext ctx){
-        String[] split = ctx.getText().split("=");
-
-        if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
-            split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
-
-        }
+//        String[] split = ctx.getText().split("=");
+//
+//        if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
+//            split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
+//
+//        }
 
         if (ctx.typeType().primitiveType() != null) {
             Value value = new Value(ctx.typeType().primitiveType().getText());
@@ -383,9 +383,9 @@ public class MyListener extends FRIENDLYBaseListener {
             } else {
                 if (ctx.variableDeclarators().variableDeclarator(0).variableInitializer() != null) {
                     if (value.getType().equals("int")||value.getType().equals("float")||value.getType().equals("double"))
-                        value.setValue(new Expression(split[1]).eval().toString());
+                        value.setValue(new Expression(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText()).eval().toString());
                     else
-                    value.setValue(split[1]);
+                    value.setValue(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText());
                 }
                 SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
             }
