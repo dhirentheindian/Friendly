@@ -9,6 +9,8 @@ import view.FriendlyMenu;
 import javax.swing.*;
 import java.math.BigDecimal;
 
+import static java.lang.System.exit;
+
 public class MyListener extends FRIENDLYBaseListener {
 
     final static int GREATEREQUAL = 1;
@@ -181,7 +183,7 @@ public class MyListener extends FRIENDLYBaseListener {
                                 if (forLoopExp == LESS) {
                                     for (int i = forLoopCtr; i < forLoopCeiling; i++) {
                                         SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(String.valueOf(i));
-                                        
+
                                         loopTime(ctx);
                                     }
                                     forDone = 999;
@@ -210,7 +212,7 @@ public class MyListener extends FRIENDLYBaseListener {
                         while (ctr<=ceiling){
                             loopTime(ctx);
                             ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
-                            
+
                         }
                         whileDone = 999;
                     }else if(ctx.parExpression().getText().contains(">=")){
@@ -299,7 +301,6 @@ public class MyListener extends FRIENDLYBaseListener {
     }
 
 
-
     @Override
     public void enterLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx) {
         String statement  = ctx.getText();
@@ -330,8 +331,9 @@ public class MyListener extends FRIENDLYBaseListener {
 
             }
         }else {
-            System.out.println("ERROR: variable '"+split[0]+"' is a constant");
+            System.out.println("ERROR");
         }
+        super.enterLocalVariableInit(ctx);
     }
 
     public FRIENDLYParser.StatementContext conditionalStatement(FRIENDLYParser.StatementContext ctx){
@@ -389,12 +391,14 @@ public class MyListener extends FRIENDLYBaseListener {
             if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]) != null) {
                 split[1] = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[1]).getValue();
             }
-
+            System.out.println("yaaaaa" + new Expression(split[0]+">"+(split[1])).eval().equals(new BigDecimal(1)));
             if (new Expression(split[0]+">"+(split[1])).eval().equals(new BigDecimal(1))) {
+
                 if(ctx.getChildCount()>3)
                     ctx.removeLastChild();
             }
             else{
+
                 ParseTree child = ctx.getChild(ctx.getChildCount()-1);
                 for(int x=0;x<ctx.getChildCount();x++)
                     ctx.removeLastChild();
@@ -469,7 +473,7 @@ public class MyListener extends FRIENDLYBaseListener {
         if (ctx.typeType().primitiveType() != null) {
             Value value = new Value(ctx.typeType().primitiveType().getText());
             if (SymbolTableManager.getInstance().getCurrentScope().getVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()) != null) {
-                System.out.println(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText()+" ERROR: Variable Exists");
+                System.out.println("ERROR: Variable Exists");
                 return false;
             }
             if (ctx.variableDeclarators().variableDeclarator().size() > 1) {
