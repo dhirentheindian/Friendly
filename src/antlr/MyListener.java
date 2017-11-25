@@ -292,8 +292,15 @@ public class MyListener extends FRIENDLYBaseListener {
     public void enterLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx) {
         String statement  = ctx.getText();
         String[] split = statement.split("=");
+        String variableType = SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getType();
         if(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null){
-            SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(split[1]);
+            if (variableType.equals("int")||variableType.equals("float")||variableType.equals("double"))
+
+                SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(new Expression(split[1]).eval().toString());
+
+            else
+                SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(split[1]);
+
         }
 
         super.enterLocalVariableInit(ctx);
