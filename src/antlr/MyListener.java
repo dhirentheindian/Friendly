@@ -22,6 +22,7 @@ public class MyListener extends FRIENDLYBaseListener {
     int forLoopCtr = 0;
     int forLoopCeiling = 0;
     int forDone=0; // 1 is done, 0 is not done
+    int whileDone =0;
     int forLoopExp = 0;// 1 = geq, 2 = leq, 3 = g, 4 = l
     FriendlyMenu friendlyMenu;
     public MyListener(FriendlyMenu friendlyMenu){
@@ -69,6 +70,9 @@ public class MyListener extends FRIENDLYBaseListener {
         if (statement.substring(0, 3).equals("for")) {
             forDone=1;
         }
+        if (statement.substring(0, 5).equals("while")) {
+            whileDone=1;
+        }
 
         super.exitStatement(ctx);
     }
@@ -77,7 +81,7 @@ public class MyListener extends FRIENDLYBaseListener {
         String statement = ctx.getText();
         //print statements
 
-        if(forDone != 999) {
+        if(forDone != 999 && whileDone != 999) {
 
             if (statement.substring(0, 5).equals("print")) {
 //            if(ctx.StringLiteral() != null){
@@ -167,13 +171,13 @@ public class MyListener extends FRIENDLYBaseListener {
                                     for (int i = forLoopCtr; i < forLoopCeiling; i++) {
                                         SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(String.valueOf(i));
                                         
-                                        forLoopTime(ctx);
+                                        loopTime(ctx);
                                     }
                                     forDone = 999;
                                 } else if (forLoopExp == LESSEQUAL) {
                                     for (int i = forLoopCtr; i <= forLoopCeiling; i++) {
                                         SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(String.valueOf(i));
-                                        forLoopTime(ctx);
+                                        loopTime(ctx);
                                     }
                                     forDone = 999;
                                 }
@@ -184,6 +188,65 @@ public class MyListener extends FRIENDLYBaseListener {
                 }
             }
             else if( statement.contains("while")){
+
+                if(ctx.parExpression() != null){
+                    String words = ctx.parExpression().getText().substring(1,ctx.parExpression().getText().length()-1);
+
+                    if(ctx.parExpression().getText().contains("<=")){
+                        String split[] = words.split("<=");
+                        int ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        int ceiling = Integer.parseInt(split[1]);
+                        while (ctr<=ceiling){
+                            loopTime(ctx);
+                            ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                            
+                        }
+                        whileDone = 999;
+                    }else if(ctx.parExpression().getText().contains(">=")){
+                        String split[] = words.split(">=");
+                        int ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        int ceiling = Integer.parseInt(split[1]);
+                        while (ctr>=ceiling){
+                            loopTime(ctx);
+                            ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        }
+                        whileDone = 999;
+                    }else if(ctx.parExpression().getText().contains("eq")){
+                        String split[] = words.split("eq");
+                        int ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        int ceiling = Integer.parseInt(split[1]);
+                        while (ctr==ceiling){
+                            loopTime(ctx);
+                            ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        }
+                        whileDone = 999;
+                    }else if(ctx.parExpression().getText().contains("<")){
+                        String split[] = words.split("<");
+                        int ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        int ceiling = Integer.parseInt(split[1]);
+                        while (ctr<ceiling){
+                            loopTime(ctx);
+                            ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        }
+                        whileDone = 999;
+                    } else if(ctx.parExpression().getText().contains(">")){
+                        String split[] = words.split(">");
+                        int ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        int ceiling = Integer.parseInt(split[1]);
+                        while (ctr>ceiling){
+                            loopTime(ctx);
+                            ctr = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getValue());
+                        }
+                        whileDone = 999;
+                    }
+                }
+
+
+            }else if(statement.substring(statement.length()-3, statement.length()-1).equals("++")){
+                String variableName = ctx.statementExpression().expression().getText().substring(0,statement.length()-3);
+                int oldVal = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(variableName).getValue());
+                int newVal = oldVal + 1;
+                SymbolTableManager.getInstance().getCurrentScope().getVariable(variableName).setValue(String.valueOf(newVal));
 
             }
 //            else if( statement.contains("=")){
@@ -201,7 +264,7 @@ public class MyListener extends FRIENDLYBaseListener {
         super.enterStatement(ctx);
     }
 
-    public boolean forLoopTime(FRIENDLYParser.StatementContext ctx){
+    public boolean loopTime(FRIENDLYParser.StatementContext ctx){
 
         for (int x = 0; x < ctx.statement(0).block().blockStatement().size(); x++) {
             if (ctx.statement(0).block().blockStatement(x).localVariableDeclarationStatement() != null) {
@@ -212,9 +275,17 @@ public class MyListener extends FRIENDLYBaseListener {
                 System.out.println("Type Dec!");
             } else if (ctx.statement(0).block().blockStatement(x).commonErrorStatement() != null) {
                 System.out.println("Common Error Statement");
+            } else if(ctx.statement(0).block().blockStatement(x).localVariableInitStatement() != null){
+                enterLocalVariableInitStatement(ctx.statement(0).block().blockStatement(x).localVariableInitStatement());
             }
         }
         return true;
+    }
+
+    @Override
+    public void enterLocalVariableInitStatement(FRIENDLYParser.LocalVariableInitStatementContext ctx) {
+        enterLocalVariableInit(ctx.localVariableInit());
+        super.enterLocalVariableInitStatement(ctx);
     }
 
     @Override
