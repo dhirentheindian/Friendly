@@ -1,5 +1,4 @@
 package antlr;
-
 // Generated from FRIENDLY.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -228,6 +227,16 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMethodDeclaration(FRIENDLYParser.MethodDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FRIENDLYParser#mainDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterMainDeclaration(FRIENDLYParser.MainDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FRIENDLYParser#mainDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitMainDeclaration(FRIENDLYParser.MainDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#genericMethodDeclaration}.
 	 * @param ctx the parse tree
@@ -739,15 +748,15 @@ public interface FRIENDLYListener extends ParseTreeListener {
 	 */
 	void exitPrintExpression(FRIENDLYParser.PrintExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link FRIENDLYParser#printContent}.
+	 * Enter a parse tree produced by {@link FRIENDLYParser#printStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrintContent(FRIENDLYParser.PrintContentContext ctx);
+	void enterPrintStatement(FRIENDLYParser.PrintStatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link FRIENDLYParser#printContent}.
+	 * Exit a parse tree produced by {@link FRIENDLYParser#printStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrintContent(FRIENDLYParser.PrintContentContext ctx);
+	void exitPrintStatement(FRIENDLYParser.PrintStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link FRIENDLYParser#catchClause}.
 	 * @param ctx the parse tree

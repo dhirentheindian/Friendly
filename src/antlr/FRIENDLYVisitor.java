@@ -1,5 +1,4 @@
 package antlr;
-
 // Generated from FRIENDLY.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -143,6 +142,12 @@ public interface FRIENDLYVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMethodDeclaration(FRIENDLYParser.MethodDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FRIENDLYParser#mainDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMainDeclaration(FRIENDLYParser.MainDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link FRIENDLYParser#genericMethodDeclaration}.
 	 * @param ctx the parse tree
@@ -450,11 +455,11 @@ public interface FRIENDLYVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintExpression(FRIENDLYParser.PrintExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link FRIENDLYParser#printContent}.
+	 * Visit a parse tree produced by {@link FRIENDLYParser#printStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPrintContent(FRIENDLYParser.PrintContentContext ctx);
+	T visitPrintStatement(FRIENDLYParser.PrintStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link FRIENDLYParser#catchClause}.
 	 * @param ctx the parse tree

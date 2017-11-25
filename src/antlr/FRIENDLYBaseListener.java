@@ -1,5 +1,6 @@
-// Generated from FRIENDLY.g4 by ANTLR 4.7
 package antlr;
+// Generated from FRIENDLY.g4 by ANTLR 4.7
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -274,6 +275,18 @@ public class FRIENDLYBaseListener implements FRIENDLYListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMethodDeclaration(FRIENDLYParser.MethodDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMainDeclaration(FRIENDLYParser.MainDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMainDeclaration(FRIENDLYParser.MainDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -891,13 +904,13 @@ public class FRIENDLYBaseListener implements FRIENDLYListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrintContent(FRIENDLYParser.PrintContentContext ctx) { }
+	@Override public void enterPrintStatement(FRIENDLYParser.PrintStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrintContent(FRIENDLYParser.PrintContentContext ctx) { }
+	@Override public void exitPrintStatement(FRIENDLYParser.PrintStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

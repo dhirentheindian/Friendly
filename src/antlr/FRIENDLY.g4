@@ -146,7 +146,8 @@ classBodyDeclaration
     ;
 
 memberDeclaration
-    :   methodDeclaration
+    :   mainDeclaration
+    |   methodDeclaration
     |   genericMethodDeclaration
     |   fieldDeclaration
     |   constructorDeclaration
@@ -169,6 +170,14 @@ methodDeclaration
         (   methodBody
         |   ';'
         )
+    ;
+
+mainDeclaration
+    :  VOID 'main' formalParameters ('[' ']')*
+                                   ('throws' qualifiedNameList)?
+                                   (   methodBody
+                                   |   ';'
+                                   )
     ;
 
 genericMethodDeclaration
@@ -433,20 +442,20 @@ statement
     |   'continue' Identifier? ';'
 //   |   'print'  '(' Identifier ')' ';'
 //   |   'print'  '(' StringLiteral ')' ';'
-    |   'print'  '(' printContent ')' ';'
-    |   'scan' '(' Identifier ')' ';'
+    |   PRINT  '(' expression ')' ';'
+    |   SCAN '(' Identifier ')' ';'
     |   ';'
     |   statementExpression ';'
     |   Identifier ':' statement
     ;
 
 printExpression
-    :
-    |   Identifier
+    :   Identifier
     |   StringLiteral
+    |   parExpression
     ;
 
-printContent
+printStatement
     :
     |   printExpression ('+' printExpression)*
     |
@@ -691,6 +700,8 @@ VOID          : 'void';
 VOLATILE      : 'volatile';
 WHILE         : 'while';
 STRING        : 'string';
+PRINT         : 'print';
+SCAN          : 'scan';
 
 // §3.10.1 Integer Literals
 

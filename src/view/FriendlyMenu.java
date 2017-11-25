@@ -2,10 +2,17 @@ package view;
 
 import antlr.*;
 import antlr.Error;
+import builder.BuildChecker;
+import builder.ParserHandler;
+import execution.ExecutionManager;
+import execution.FunctionTracker;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import semantics.statements.StatementControlOverseer;
+import semantics.symboltable.scopes.LocalScopeCreator;
+import semantics.symboltable.SymbolTableManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -114,39 +121,56 @@ public class FriendlyMenu {
                 String s[] = str.split("\\r?\\n");
                 ArrayList<String> arrList = new ArrayList<>(Arrays.asList(s)) ;
 
-                ANTLRInputStream input = new ANTLRInputStream(str);
-                FRIENDLYLexer lexer = new FRIENDLYLexer(input);
-                CommonTokenStream tokens = new CommonTokenStream(lexer);
-                FRIENDLYParser parser = new FRIENDLYParser(tokens);
-                parser.removeErrorListeners();
-                parser.setErrorHandler(new MyErrorStrategy());
+                SymbolTableManager.initialize();
+                BuildChecker.initialize();
+                ExecutionManager.initialize();
+                LocalScopeCreator.initialize();
+                StatementControlOverseer.initialize();
+                FunctionTracker.initialize();
 
-                parser.addErrorListener(new CustomFRIENDLYErrorListener());
+                ParserHandler.getInstance().parseText ("Main", str);
 
-                ParseTree tree = parser.compilationUnit();
-                ParseTreeWalker walker = new ParseTreeWalker();
+                if(BuildChecker.getInstance().canExecute()) {
+                    System.out.print("Build Successful");
+                    ExecutionManager.getInstance().executeAllActions();
+                }
+                else {
+                    System.out.println("Fix errors found in build before running.");
+                }
 
-                //walker.walk(new BaseTester(),tree);
-                MyListener treeListener = new MyListener(friendlyMenu);
+//                ANTLRInputStream input = new ANTLRInputStream(str);
+//                FRIENDLYLexer lexer = new FRIENDLYLexer(input);
+//                CommonTokenStream tokens = new CommonTokenStream(lexer);
+//                FRIENDLYParser parser = new FRIENDLYParser(tokens);
+//                parser.removeErrorListeners();
+//                parser.setErrorHandler(new MyErrorStrategy());
+//
+//                parser.addErrorListener(new CustomFRIENDLYErrorListener());
+//
+//                ParseTree tree = parser.compilationUnit();
+//                ParseTreeWalker walker = new ParseTreeWalker();
+//
+//                //walker.walk(new BaseTester(),tree);
+//                MyListener treeListener = new MyListener(friendlyMenu);
 
 
                 // Put things back
                 System.out.flush();
-             //   System.setOut(old);
-                // Show what happened
-                if(SyntaxErrorCollector.getInstance().countErrors() == 0) {
-                    model.addElement(new Error(0,0,"Code Compiled Successfully"));
-                    //code will run only if there are no syntax errors.
-                    walker.walk(treeListener,tree);
-                    System.out.println(tree.toStringTree(parser));
-
-                }else {
-                    ArrayList<Error> eList = SyntaxErrorCollector.getInstance().getErrorList();
-                    for(Error err:eList) {
-                        model.addElement(err);
-
-                    }
-                }
+                System.setOut(old);
+//                 Show what happened
+//                if(SyntaxErrorCollector.getInstance().countErrors() == 0) {
+//                    model.addElement(new Error(0,0,"Code Compiled Successfully"));
+//                    //code will run only if there are no syntax errors.
+//                    walker.walk(treeListener,tree);
+//                    System.out.println(tree.toStringTree(parser));
+//
+//                }else {
+//                    ArrayList<Error> eList = SyntaxErrorCollector.getInstance().getErrorList();
+//                    for(Error err:eList) {
+//                        model.addElement(err);
+//
+//                    }
+//                }
                 listOutput.setModel(model);
                 refreshPrintScreen();
                 baos = new ByteArrayOutputStream();
@@ -157,12 +181,17 @@ public class FriendlyMenu {
     public static void main(String[] args) {
         JFrame frame = new JFrame("FriendlyMenu");
 
+
+
         friendlyMenu =new FriendlyMenu();
         frame.setContentPane(friendlyMenu.panelFriendly);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+
+
+
     }
 
     private void createUIComponents() {
