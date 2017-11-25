@@ -3,9 +3,10 @@ public class Value {
     private boolean initialized;
     private String type;
     private String value;
+    private boolean isConst;
 
     public Value(){
-
+        isConst = false;
     }
 
     public Value(String type){
@@ -13,6 +14,13 @@ public class Value {
 
     }
 
+    public void setConst(boolean aConst) {
+        isConst = aConst;
+    }
+
+    public boolean getConst(){
+        return isConst;
+    }
     public boolean isInitialized() {
 
         return initialized;
@@ -32,6 +40,11 @@ public class Value {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return isConst + " " + value + " " + type;
     }
 
     public void setValue(String value) {

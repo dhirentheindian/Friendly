@@ -204,7 +204,7 @@ interfaceMemberDeclaration
     ;
 
 constDeclaration
-    :   typeType constantDeclarator (',' constantDeclarator)* ';'
+    :   'const' typeType constantDeclarator (',' constantDeclarator)* ';'
     ;
 
 constantDeclarator
@@ -392,12 +392,14 @@ block
     ;
 
 blockStatement
-    :   localVariableDeclarationStatement
+    :   constDeclaration
+    |   localVariableDeclarationStatement
     |   localVariableInitStatement
     |   statement
     |   commonErrorStatement
     |   typeDeclaration
     ;
+
 localVariableInitStatement
     : localVariableInit ';'
     ;

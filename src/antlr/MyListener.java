@@ -62,6 +62,17 @@ public class MyListener extends FRIENDLYBaseListener {
     }
 
     @Override
+    public void enterConstDeclaration(FRIENDLYParser.ConstDeclarationContext ctx) {
+        String[] split = ctx.constantDeclarator(0).getText().split("=");
+        Value v = new Value(ctx.typeType().getText());
+        v.setValue(split[0]);
+        v.setConst(true);
+        SymbolTableManager.getInstance().getCurrentScope().addVariable(split[0], v);
+        System.out.println(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).toString());
+        super.enterConstDeclaration(ctx);
+    }
+
+    @Override
     public void exitStatement(FRIENDLYParser.StatementContext ctx) {
         String statement = ctx.getText();
         if (statement.substring(0, 2).equals("if")) {
@@ -243,11 +254,16 @@ public class MyListener extends FRIENDLYBaseListener {
 
 
             }else if(statement.substring(statement.length()-3, statement.length()-1).equals("++")){
-                String variableName = ctx.statementExpression().expression().getText().substring(0,statement.length()-3);
-                int oldVal = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(variableName).getValue());
-                int newVal = oldVal + 1;
-                SymbolTableManager.getInstance().getCurrentScope().getVariable(variableName).setValue(String.valueOf(newVal));
 
+
+                String variableName = ctx.statementExpression().expression().getText().substring(0,statement.length()-3);
+                if(!SymbolTableManager.getInstance().getCurrentScope().getVariable(variableName).getConst()) {
+                    int oldVal = Integer.parseInt(SymbolTableManager.getInstance().getCurrentScope().getVariable(variableName).getValue());
+                    int newVal = oldVal + 1;
+                    SymbolTableManager.getInstance().getCurrentScope().getVariable(variableName).setValue(String.valueOf(newVal));
+                }else{
+                    System.out.println("ERROR: variable '"+variableName+"' is a constant");
+                }
             }
 //            else if( statement.contains("=")){
 //
@@ -268,7 +284,7 @@ public class MyListener extends FRIENDLYBaseListener {
 
         for (int x = 0; x < ctx.statement(0).block().blockStatement().size(); x++) {
             if (ctx.statement(0).block().blockStatement(x).localVariableDeclarationStatement() != null) {
-                enterLocalVariableDeclarationStatement(ctx.statement(0).block().blockStatement(x).localVariableDeclarationStatement());
+                enterLocalVariableDeclaration(ctx.statement(0).block().blockStatement(x).localVariableDeclarationStatement().localVariableDeclaration());
             } else if (ctx.statement(0).block().blockStatement(x).statement() != null) {
                 enterStatement(ctx.statement(0).block().blockStatement(x).statement());
             } else if (ctx.statement(0).block().blockStatement(x).typeDeclaration() != null) {
@@ -276,17 +292,13 @@ public class MyListener extends FRIENDLYBaseListener {
             } else if (ctx.statement(0).block().blockStatement(x).commonErrorStatement() != null) {
                 System.out.println("Common Error Statement");
             } else if(ctx.statement(0).block().blockStatement(x).localVariableInitStatement() != null){
-                enterLocalVariableInitStatement(ctx.statement(0).block().blockStatement(x).localVariableInitStatement());
+                enterLocalVariableInit(ctx.statement(0).block().blockStatement(x).localVariableInitStatement().localVariableInit());
             }
         }
         return true;
     }
 
-    @Override
-    public void enterLocalVariableInitStatement(FRIENDLYParser.LocalVariableInitStatementContext ctx) {
-        enterLocalVariableInit(ctx.localVariableInit());
-        super.enterLocalVariableInitStatement(ctx);
-    }
+
 
     @Override
     public void enterLocalVariableInit(FRIENDLYParser.LocalVariableInitContext ctx) {
@@ -297,28 +309,29 @@ public class MyListener extends FRIENDLYBaseListener {
         String[] evalSplitAddition= split[1].split("\\+");
 
         String equation="";
-        if (variableType.equals("int")||variableType.equals("float")||variableType.equals("double")){
-            for(int x=0;x<evalSplitAddition.length;x++){
-                System.out.println("EVAL CONTENT ADDITON: "+evalSplitAddition[x]);
-                if(SymbolTableManager.getInstance().getCurrentScope().getVariable(evalSplitAddition[x])!=null)
-                    evalSplitAddition[x]=SymbolTableManager.getInstance().getCurrentScope().getVariable(evalSplitAddition[x]).getValue();
-                System.out.println("EVAL CONTENT ADDITON After: "+evalSplitAddition[x]);
-                equation= equation+evalSplitAddition[x]+"+";
-                System.out.println("EVAL CONTENT Equation : "+equation);
+        if(!SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).getConst()) {
+            if (variableType.equals("int") || variableType.equals("float") || variableType.equals("double")) {
+                for (int x = 0; x < evalSplitAddition.length; x++) {
+                    System.out.println("EVAL CONTENT ADDITON: " + evalSplitAddition[x]);
+                    if (SymbolTableManager.getInstance().getCurrentScope().getVariable(evalSplitAddition[x]) != null)
+                        evalSplitAddition[x] = SymbolTableManager.getInstance().getCurrentScope().getVariable(evalSplitAddition[x]).getValue();
+                    System.out.println("EVAL CONTENT ADDITON After: " + evalSplitAddition[x]);
+                    equation = equation + evalSplitAddition[x] + "+";
+                    System.out.println("EVAL CONTENT Equation : " + equation);
+                }
+                equation = equation + "0";
             }
-            equation=equation+"0";
-        }
-        System.out.println("FINAL:"+equation);
-        if(SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null){
-            if (variableType.equals("int")||variableType.equals("float")||variableType.equals("double")) {
-                SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(new Expression(equation).eval().toString());
+            System.out.println("FINAL:" + equation);
+            if (SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]) != null) {
+                if (variableType.equals("int") || variableType.equals("float") || variableType.equals("double")) {
+                    SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(new Expression(equation).eval().toString());
+                } else
+                    SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(split[1]);
+
             }
-            else
-                SymbolTableManager.getInstance().getCurrentScope().getVariable(split[0]).setValue(split[1]);
-
+        }else {
+            System.out.println("ERROR: variable '"+split[0]+"' is a constant");
         }
-
-        super.enterLocalVariableInit(ctx);
     }
 
     public FRIENDLYParser.StatementContext conditionalStatement(FRIENDLYParser.StatementContext ctx){
