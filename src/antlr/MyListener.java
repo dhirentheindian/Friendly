@@ -331,7 +331,7 @@ public class MyListener extends FRIENDLYBaseListener {
 
             }
         }else {
-            System.out.println("ERROR");
+            System.out.println("ERROR: variable '"+split[0]+"' is a constant.");
         }
         super.enterLocalVariableInit(ctx);
     }
