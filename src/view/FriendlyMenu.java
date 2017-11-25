@@ -76,14 +76,14 @@ public class FriendlyMenu {
                             DefaultHighlighter.DefaultHighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter( Color.RED );
                             highlighter.setDrawsLayeredHighlights(false); // this is the key line
 
-//                            try {
-//                                int start = textAreaInput.getLineStartOffset(t.getLine()-1);
-//                                int end = textAreaInput.getLineEndOffset(t.getLine()-1);
-//                                highlighter.removeAllHighlights();
-//                                highlighter.addHighlight(start,end,painter);
-//                            } catch (BadLocationException e1) {
-//                                e1.printStackTrace();
-//                            }
+                            try {
+                                int start = textAreaInput.getLineStartOffset(t.getLine()-1);
+                                int end = textAreaInput.getLineEndOffset(t.getLine()-1);
+                                highlighter.removeAllHighlights();
+                                highlighter.addHighlight(start,end,painter);
+                            } catch (BadLocationException e1) {
+                                e1.printStackTrace();
+                            }
 
                         }
                     }
