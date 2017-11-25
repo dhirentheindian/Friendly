@@ -385,7 +385,7 @@ public class MyListener extends FRIENDLYBaseListener {
                     if (value.getType().equals("int")||value.getType().equals("float")||value.getType().equals("double"))
                         value.setValue(new Expression(split[1]).eval().toString());
                     else
-                    value.setValue(ctx.variableDeclarators().variableDeclarator(0).variableInitializer().getText());
+                    value.setValue(split[1]);
                 }
                 SymbolTableManager.getInstance().getCurrentScope().addVariable(ctx.variableDeclarators().variableDeclarator(0).variableDeclaratorId().getText(), value);
             }
